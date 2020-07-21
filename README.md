@@ -5,6 +5,12 @@
 ## API 문서
 - Swagger 문서 URL : http://localhost:8080/swagger-ui.html
 
+## Wireframe 
+
+- 로그인
+
+![image](https://user-images.githubusercontent.com/23401317/88033757-b321b200-cb7a-11ea-90cb-c8d490f7cf2b.png)
+
 ## 셋업
 
 ### 1. 로컬로 클론
