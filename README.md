@@ -27,6 +27,13 @@
 
 ![5반_10팀_프로젝트1_와이어프레임_모임생성](/uploads/901954942f0220864eb4464cf3ee3d25/5반_10팀_프로젝트1_와이어프레임_모임생성.png)
 
+ - 프로필 페이지
+![image](https://user-images.githubusercontent.com/49890780/88033962-f9771100-cb7a-11ea-85d8-8dd0cdf03874.png)
+
+ - 회원가입
+![image](https://user-images.githubusercontent.com/49890780/88034007-08f65a00-cb7b-11ea-9c71-bb194b1da114.png)
+
+
 ## 셋업
 
 ### 1. 로컬로 클론
