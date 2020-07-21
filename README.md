@@ -11,6 +11,10 @@
 
 ![image](https://user-images.githubusercontent.com/23401317/88033757-b321b200-cb7a-11ea-90cb-c8d490f7cf2b.png)
 
+- 메인1
+
+![5반_10팀_프로젝트1_와이어프레임_메인1](/uploads/a362e2da26b464a0599da301be6ee12d/5반_10팀_프로젝트1_와이어프레임_메인1.png)
+
 ## 셋업
 
 ### 1. 로컬로 클론
