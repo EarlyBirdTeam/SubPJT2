@@ -1,13 +1,9 @@
 <template ref="outline">
-    <div class="" id="board">
+    <div class="post" id="board">
         <button @click="test">Add Button</button>
         <div class="container" ref="whiteBoard">
-          <component v-bind:is="comps"></component>
 
-          
-
-            <!-- <Moveable
-            ref="moveable"
+            <Moveable
             class="moveable"
             v-bind="moveable"
             @drag="handleDrag"
@@ -16,22 +12,25 @@
             @rotate="handleRotate"
             @warp="handleWarp"
             >
-                <div @click="clickEv" @dblclick="dblclickEv" 
-            readonly="readonly"
-              name="" id="asdfasdf"
-              style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
-              
-              this is inner
-              </div>
-            </Moveable> -->
-              <div @click="clickEv" @dblclick="dblclickEv" 
-              ref="contentTextArea" readonly="readonly"
-              name="" id="asdfasdf"
-              draggable="false"
-              style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
+
+              <div  @dblclick="clickEv" ref="contentTextArea" name="" id="asdfasdf" cols="30" rows="3">
               11
               </div>
-              
+            </Moveable>
+
+            <!-- <Moveable
+            class="moveable"
+            v-bind="moveable"
+            @drag="handleDrag"
+            @resize="handleResize"
+            @scale="handleScale"
+            @rotate="handleRotate"
+            @warp="handleWarp"
+            >
+              <textarea  @dblclick="clickEv" ref="contentTextArea" name="" id="asdfasdf" cols="30" rows="3">
+                asdf
+              </textarea> 
+            </Moveable> -->
         </div>
     </div>
 </template>
@@ -40,11 +39,7 @@
 import Moveable from 'vue-moveable';
 
 const postItDiv = `<div class="moveable" style="left: 365px; top: 113px;"><textarea name="" id="asdfasdf" cols="30" rows="3"> asdfa </textarea></div>`
-const pI = `<div 
-            style="position: absolute; width: 200px; height: 200px; background-color: yellow;">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-          </div>`
-
+const pI = `<div data-scena-element="true" data-scena-element-id="scena23050442" style="top: 22.5px; left: -114px; position: absolute; width: 498px; height: 279px; background-color: rgb(68, 170, 255); transform: translate(-483px, -254px) rotate(0deg) scale(1, 1);"></div>`
 
 export default {
   name: 'app',
@@ -52,13 +47,9 @@ export default {
     Moveable,
   },
   created() {
-    
-      // this.comps.push('Moveable');
-        console.log(this.moveable);
   },
   data: () => ({
     moveable: {
-      target: '',
       draggable: true,
       throttleDrag: 1,
       resizable: true,
@@ -68,9 +59,9 @@ export default {
       throttleScale: 0,
       rotatable: true,
       throttleRotate: 0,
-      origin: false,
+      origin: false
     },
-    comps: [],
+    tt: 'aasdf',
     // imageSourse:{
     //     [
     //         {thumnail: ''}
@@ -79,12 +70,10 @@ export default {
 
   }),
   methods: {
-    handleDrag({ target, left, top, currentTarget, clientX}) {
+    handleDrag({ target, left, top }) {
     //   console.log('onDrag left, top', left, top);
       target.style.left = `${left}px`;
       target.style.top = `${top}px`;
-      // console.log("getRect: ", this.$refs.moveable.getRect())
-      console.log(target);
     },
     handleResize({
       target, width, height, delta,
@@ -105,33 +94,19 @@ export default {
     //   console.log('onWarp', target);
       target.style.transform = transform;
     },  
-    dblclickEv({ target, transform }){
-        console.log('dblclick!')
+    clickEv({ target, transform }){
+        console.log('click!')
         console.log(target.innerHTML);
         target.focus();
-    },
-    clickEv({ target, transform, currentTarget }){
-        console.log('click! : ', target.innerHTML)
-        this.moveable.target = currentTarget
-        console.log(currentTarget);
-        // console.log(this.moveable.target);
-        // target.focus();
-        // target.setAttribute('class', 'target')
-        console.log(this.moveable);
-        console.log(target.style.left + ' and ' + target.style.top);
-        console.log(this.$children[0]);
     },
     lining({}){
       
     },
     test(){
-      this.comps.push(pI);
-    },
-    showSomeData(){
-
+      this.$refs.whiteBoard.innerHTML += pI;
+      // console.log(this.$refs.whiteBoard.innerHTML += pI)
     }
   },
-  
 }
 </script>
 
@@ -172,6 +147,6 @@ img{
 textarea {
     height: 100%;
     width: 100%;
-    /* background-color: yellow; */
+    background-color: yellow;
 }
 </style>
