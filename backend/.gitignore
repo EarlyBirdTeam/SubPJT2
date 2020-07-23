@@ -1,12 +1,7 @@
-.DS_Store
 HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-
-### my ignore ###
-### src/main/resources/application.yml
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -22,6 +17,7 @@ target/
 *.iws
 *.iml
 *.ipr
+/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -29,7 +25,6 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
 
 ### VS Code ###
 .vscode/

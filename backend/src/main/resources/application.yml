@@ -1,9 +1,13 @@
 spring:
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: earlyBird10Team@gmail.com
-    password: earlybird5959!
-    properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
+  profiles:
+    active: local
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+    add-properties: false
+  freemarker:
+    cache: false
+  jwt:
+    secret: govlepel@$&
