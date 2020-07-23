@@ -81,8 +81,8 @@ export default {
       console.log(this.source.localData);
     },
     onAppointmentChange: function (event) {
-        console.log(event);
-        console.log(this.$refs.myScheduler)
+        // console.log(event);
+        // console.log(this.$refs.myScheduler)
         this.$refs.myScheduler.addAppointment(event);
     }
   },

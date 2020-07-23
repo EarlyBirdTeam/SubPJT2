@@ -1,5 +1,5 @@
 <template>
-  <div id="gg">
+  <div :id="counter">
     <button @click="clicked">button</button>
   </div>
 </template>
@@ -8,9 +8,12 @@
 <script>
 var designer = new CanvasDesigner();
 export default {
+  name: 'canvas',
+
   data() {
     return {
-      is_canvas: false
+      is_canvas: false,
+      counter: 1000
     }
   },
   created() {
@@ -23,10 +26,11 @@ export default {
     clicked() {
       if(!this.is_canvas) {
         this.is_canvas = true
-        let a = document.getElementById('gg');
+        let a = document.getElementById(this.counter);
         console.log(a);
         a.style.background = 'skyblue';
         designer.appendTo(a);
+        this.counter++;
       }
     }
   }
