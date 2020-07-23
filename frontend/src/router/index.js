@@ -15,6 +15,7 @@ import MyPage from '../page/user/MyPage.vue'
 import List from '../page/post/List.vue'
 import Board from '../page/post/Test_Board.vue'
 import Scheduler from '../page/post/Test_Scheduler.vue'
+import Canvas from '../page/post/Test_Canvas.vue'
  
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -58,6 +59,11 @@ export default new Router({
       path: '/scheduler',
       name: 'test_scheduler',
       component: Scheduler,
+    },
+    { 
+      path: '/canvas',
+      name: 'test_canvas',
+      component: Canvas,
     },
     { 
       path: '/error',
