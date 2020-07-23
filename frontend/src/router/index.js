@@ -14,6 +14,7 @@ import MyPage from '../page/user/MyPage.vue'
 // 포스트
 import List from '../page/post/List.vue'
 import Board from '../page/post/Test_Board.vue'
+import Scheduler from '../page/post/Test_Scheduler.vue'
  
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -52,6 +53,11 @@ export default new Router({
       path: '/board',
       name: constants.URL_TYPE.POST.TEST_BOARD,
       component: Board,
+    },
+    { 
+      path: '/scheduler',
+      name: 'test_scheduler',
+      component: Scheduler,
     },
     { 
       path: '/error',

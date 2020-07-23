@@ -19,7 +19,7 @@
             </Moveable>
 
             <Moveable
-            class="moveable"
+            class="moveable2"
             v-bind="moveable"
             @drag="handleDrag"
             @click="lining"
@@ -29,9 +29,7 @@
             @warp="handleWarp"
             >
 
-              <textarea  @dblclick="clickEv" ref="contentTextArea" name="" id="asdfasdf" cols="30" rows="3">
-                  1111
-              </textarea>
+              <Scheduler/>
             </Moveable>
             
         </div>
@@ -40,7 +38,7 @@
 
 <script>
 import Moveable from 'vue-moveable';
-
+import Scheduler from '../../components/common/Scheduler'
 const postItDiv = `<div class="moveable"><textarea name="" id="asdfasdf" cols="30" rows="3">  </textarea></div>`
 const pI = `<div data-styled-id="rCS53a2i7" data-able-draggable="true" data-able-rotatable="true" data-able-scalable="true" data-able-padding="true" class="moveable-control-box    rCS53a2i7" style="position: absolute; display: block; transform: translate(592px, 197px) translateZ(50px); --zoom:1; --zoompx:1px;"><div class="moveable-line moveable-rotation-line" style="transform: translate(-50%) translate(150px, 0px) rotate(0rad);"><div class="moveable-control moveable-rotation"></div></div><div data-rotation="135" data-direction="nw" class="moveable-control moveable-direction moveable-nw" style="transform: translate(0px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="ne" class="moveable-control moveable-direction moveable-ne" style="transform: translate(300px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="sw" class="moveable-control moveable-direction moveable-sw" style="transform: translate(0px, 200px) rotate(0rad);"></div><div data-rotation="135" data-direction="se" class="moveable-control moveable-direction moveable-se" style="transform: translate(300px, 200px) rotate(0rad);"></div><div data-rotation="0" data-direction="n" class="moveable-control moveable-direction moveable-n" style="transform: translate(150px, 0px) rotate(0rad);"></div><div data-rotation="90" data-direction="w" class="moveable-control moveable-direction moveable-w" style="transform: translate(0px, 100px) rotate(0rad);"></div><div data-rotation="0" data-direction="s" class="moveable-control moveable-direction moveable-s" style="transform: translate(150px, 200px) rotate(0rad);"></div><div data-rotation="90" data-direction="e" class="moveable-control moveable-direction moveable-e" style="transform: translate(300px, 100px) rotate(0rad);"></div><div data-rotation="-1" data-line-index="0" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(0rad); width: 300px;"></div><div data-rotation="-1" data-line-index="1" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(300px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="2" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="3" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 200px) rotate(0rad); width: 300px;"></div></div><div data-styled-id="rCS53a2i7" data-able-draggable="true" data-able-rotatable="true" data-able-scalable="true" data-able-padding="true" class="moveable-control-box    rCS53a2i7" style="position: absolute; display: block; transform: translate(592px, 197px) translateZ(50px); --zoom:1; --zoompx:1px;"><div class="moveable-line moveable-rotation-line" style="transform: translate(-50%) translate(150px, 0px) rotate(0rad);"><div class="moveable-control moveable-rotation"></div></div><div data-rotation="135" data-direction="nw" class="moveable-control moveable-direction moveable-nw" style="transform: translate(0px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="ne" class="moveable-control moveable-direction moveable-ne" style="transform: translate(300px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="sw" class="moveable-control moveable-direction moveable-sw" style="transform: translate(0px, 200px) rotate(0rad);"></div><div data-rotation="135" data-direction="se" class="moveable-control moveable-direction moveable-se" style="transform: translate(300px, 200px) rotate(0rad);"></div><div data-rotation="0" data-direction="n" class="moveable-control moveable-direction moveable-n" style="transform: translate(150px, 0px) rotate(0rad);"></div><div data-rotation="90" data-direction="w" class="moveable-control moveable-direction moveable-w" style="transform: translate(0px, 100px) rotate(0rad);"></div><div data-rotation="0" data-direction="s" class="moveable-control moveable-direction moveable-s" style="transform: translate(150px, 200px) rotate(0rad);"></div><div data-rotation="90" data-direction="e" class="moveable-control moveable-direction moveable-e" style="transform: translate(300px, 100px) rotate(0rad);"></div><div data-rotation="-1" data-line-index="0" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(0rad); width: 300px;"></div><div data-rotation="-1" data-line-index="1" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(300px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="2" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="3" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 200px) rotate(0rad); width: 300px;"></div></div>`
 
@@ -48,6 +46,7 @@ export default {
   name: 'app',
   components: {
     Moveable,
+    Scheduler,
   },
   data: () => ({
     moveable: {
@@ -116,6 +115,18 @@ export default {
   position: relative;
   width: 300px;
   height: 200px;
+  text-align: center;
+  font-size: 40px;
+  margin: 0 auto;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.moveable2 {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 800px;
+  height: 600px;
   text-align: center;
   font-size: 40px;
   margin: 0 auto;
