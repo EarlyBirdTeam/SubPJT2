@@ -172,6 +172,6 @@ img{
 textarea {
     height: 100%;
     width: 100%;
-    /* background-color: yellow; */
+    background-color: yellow;
 }
 </style>
