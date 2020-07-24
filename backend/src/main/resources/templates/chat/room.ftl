@@ -27,14 +27,22 @@
                 <label class="input-group-text">방제목</label>
             </div>
             <input type="text" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
+
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
             </div>
 
             <!-- 채널 생성 -->
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button" @click="createRoom">채널 생성</button>
+            <div class="input-group-prepend">
+                <label class="input-group-text">채널 이름</label>
             </div>
+            <input type="text" class="form-control" v-model="channel_name" v-on:keyup.enter="createChannel">
+            <div class="input-group-append">
+                <button class="btn btn-outline-warning" type="button" @click="createChannel">채널 생성</button>
+            </div>
+
+
+
         </div>
         <ul class="list-group">
             <li class="list-group-item list-group-item-action" v-for="item in chatrooms" v-bind:key="item.roomId" v-on:click="enterRoom(item.roomId, item.name)">
@@ -50,6 +58,7 @@
             el: '#app',
             data: {
                 room_name : '',
+                channel_name : '',
                 chatrooms: [
                 ]
             },
@@ -80,6 +89,25 @@
                             }
                         )
                         .catch( response => { alert("채팅방 개설에 실패하였습니다."); } );
+                    }
+                },
+
+                createChannel: function() {
+                    if("" === this.channel_name) {
+                        alert("채널 이름을 입력해 주십시요.");
+                        return;
+                    } else {
+                        var params = new URLSearchParams();
+                        params.append("name",this.channel_name);
+                        axios.post('/channel/room', params)
+                            .then(
+                                response => {
+                                    alert(response.data.name+"채널 개설에 성공하였습니다.")
+                                    this.channel_name = '';
+                                    this.findAllRoom();
+                                }
+                            )
+                            .catch( response => { alert("채널 개설에 실패하였습니다."); } );
                     }
                 },
                 enterRoom: function(roomId, roomName) {
