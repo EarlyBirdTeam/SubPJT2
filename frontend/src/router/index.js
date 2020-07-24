@@ -14,9 +14,6 @@ import MyPage from '../page/user/MyPage.vue'
 // 포스트
 import List from '../page/post/List.vue'
 import Board from '../page/post/Test_Board.vue'
-import Scheduler from '../page/post/Test_Scheduler.vue'
-import Canvas from '../page/post/Test_Canvas.vue'
-import Add from '../page/post/Test_Add.vue'
 
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -56,23 +53,6 @@ export default new Router({
       name: constants.URL_TYPE.POST.TEST_BOARD,
       component: Board,
     },
-    // 모듈화 테스트 진행
-    { 
-      path: '/scheduler',
-      name: 'test_scheduler',
-      component: Scheduler,
-    },
-    { 
-      path: '/canvas',
-      name: 'test_canvas',
-      component: Canvas,
-    },
-    { 
-      path: '/add',
-      name: 'add',
-      component: Add,
-    },
-
 
     { 
       path: '/error',
