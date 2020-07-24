@@ -30,6 +30,11 @@
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
             </div>
+
+            <!-- 채널 생성 -->
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" @click="createRoom">채널 생성</button>
+            </div>
         </div>
         <ul class="list-group">
             <li class="list-group-item list-group-item-action" v-for="item in chatrooms" v-bind:key="item.roomId" v-on:click="enterRoom(item.roomId, item.name)">
