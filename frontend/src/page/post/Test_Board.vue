@@ -1,13 +1,55 @@
-<template ref="outline">
-  <div class="post" id="board">
-    <div>
-      <button @click="createText">Text</button>
-      <button @click="createScheduler">Scheduler</button>
-      <button @click="createCanvas">Canvas</button>
-    </div>
-    <br />
-    <div class="container" ref="whiteBoard">
-      <Moveable
+<template >
+    <div class="" id="board" @click="test2">
+        <div>
+            <button @click="createText">Text</button>
+            <button @click="createScheduler">Scheduler</button>
+            <button @click="createCanvas">Canvas</button>
+        </div>
+
+        <div class="container" ref="whiteBoard">
+          <component v-bind:is="comps"></component>
+
+            <Moveable
+            ref="moveable"
+            class="moveable"
+            v-bind="moveable"
+            @drag="handleDrag"
+            @resize="handleResize"
+            @scale="handleScale"
+            @rotate="handleRotate"
+            @warp="handleWarp"
+            style="display: none;"
+            >
+            </Moveable> 
+
+              <div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
+                ref="contentTextArea" readonly="readonly"
+                name="" id="asdfasdf"
+                draggable="false"
+               >
+                it's Post it!
+                </div>
+            <div class="moveable" style="left: -1px; top: 0px;" @click="clickEv" >
+              <div @dblclick="dblclickEv" 
+                ref="contentTextArea" readonly="readonly"
+                name="" id="asdfasdf"
+                draggable="false"
+                style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
+                22
+                </div>
+            </div>
+
+            <div class="moveable" style="left: -1px; top: 0px;" @click="clickEv" >
+              <div @dblclick="dblclickEv" 
+                ref="contentTextArea" readonly="readonly"
+                name="" id="asdfasdf"
+                draggable="false"
+                style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
+                33
+                </div>
+            </div>
+
+            <Moveable
         v-for="(a, idx) in counter.textC"
         :key="idx"
         class="moveable"
@@ -52,16 +94,27 @@
       >
         <Canvas/>
       </Moveable>
+
+
+        </div>
+
     </div>
   </div>
 </template>
 
 <script>
-import Moveable from "vue-moveable";
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
-const postItDiv = `<div class="moveable"><textarea name="" id="asdfasdf" cols="30" rows="3">  </textarea></div>`;
-const pI = `<div data-styled-id="rCS53a2i7" data-able-draggable="true" data-able-rotatable="true" data-able-scalable="true" data-able-padding="true" class="moveable-control-box    rCS53a2i7" style="position: absolute; display: block; transform: translate(592px, 197px) translateZ(50px); --zoom:1; --zoompx:1px;"><div class="moveable-line moveable-rotation-line" style="transform: translate(-50%) translate(150px, 0px) rotate(0rad);"><div class="moveable-control moveable-rotation"></div></div><div data-rotation="135" data-direction="nw" class="moveable-control moveable-direction moveable-nw" style="transform: translate(0px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="ne" class="moveable-control moveable-direction moveable-ne" style="transform: translate(300px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="sw" class="moveable-control moveable-direction moveable-sw" style="transform: translate(0px, 200px) rotate(0rad);"></div><div data-rotation="135" data-direction="se" class="moveable-control moveable-direction moveable-se" style="transform: translate(300px, 200px) rotate(0rad);"></div><div data-rotation="0" data-direction="n" class="moveable-control moveable-direction moveable-n" style="transform: translate(150px, 0px) rotate(0rad);"></div><div data-rotation="90" data-direction="w" class="moveable-control moveable-direction moveable-w" style="transform: translate(0px, 100px) rotate(0rad);"></div><div data-rotation="0" data-direction="s" class="moveable-control moveable-direction moveable-s" style="transform: translate(150px, 200px) rotate(0rad);"></div><div data-rotation="90" data-direction="e" class="moveable-control moveable-direction moveable-e" style="transform: translate(300px, 100px) rotate(0rad);"></div><div data-rotation="-1" data-line-index="0" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(0rad); width: 300px;"></div><div data-rotation="-1" data-line-index="1" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(300px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="2" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="3" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 200px) rotate(0rad); width: 300px;"></div></div><div data-styled-id="rCS53a2i7" data-able-draggable="true" data-able-rotatable="true" data-able-scalable="true" data-able-padding="true" class="moveable-control-box    rCS53a2i7" style="position: absolute; display: block; transform: translate(592px, 197px) translateZ(50px); --zoom:1; --zoompx:1px;"><div class="moveable-line moveable-rotation-line" style="transform: translate(-50%) translate(150px, 0px) rotate(0rad);"><div class="moveable-control moveable-rotation"></div></div><div data-rotation="135" data-direction="nw" class="moveable-control moveable-direction moveable-nw" style="transform: translate(0px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="ne" class="moveable-control moveable-direction moveable-ne" style="transform: translate(300px, 0px) rotate(0rad);"></div><div data-rotation="45" data-direction="sw" class="moveable-control moveable-direction moveable-sw" style="transform: translate(0px, 200px) rotate(0rad);"></div><div data-rotation="135" data-direction="se" class="moveable-control moveable-direction moveable-se" style="transform: translate(300px, 200px) rotate(0rad);"></div><div data-rotation="0" data-direction="n" class="moveable-control moveable-direction moveable-n" style="transform: translate(150px, 0px) rotate(0rad);"></div><div data-rotation="90" data-direction="w" class="moveable-control moveable-direction moveable-w" style="transform: translate(0px, 100px) rotate(0rad);"></div><div data-rotation="0" data-direction="s" class="moveable-control moveable-direction moveable-s" style="transform: translate(150px, 200px) rotate(0rad);"></div><div data-rotation="90" data-direction="e" class="moveable-control moveable-direction moveable-e" style="transform: translate(300px, 100px) rotate(0rad);"></div><div data-rotation="-1" data-line-index="0" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(0rad); width: 300px;"></div><div data-rotation="-1" data-line-index="1" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(300px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="2" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 0px) rotate(1.5708rad); width: 200px;"></div><div data-rotation="-1" data-line-index="3" data-direction="" class="moveable-line moveable-direction " style="transform: translateY(-50%) translate(0px, 200px) rotate(0rad); width: 300px;"></div></div>`;
+import Moveable from 'vue-moveable';
+
+const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
+                ref="contentTextArea" readonly="readonly"
+                name="" id="asdfasdf"
+                draggable="false"
+               >
+                it's Post it!
+                </div>`
+
 
 export default {
   name: "app",
@@ -70,24 +123,25 @@ export default {
     Scheduler,
     Canvas,
   },
+  created() {
+    
+  },
   data: () => ({
     moveable: {
+      target: '',
       draggable: true,
-      throttleDrag: 0,
+      throttleDrag: 1,
       resizable: false,
       throttleResize: 1,
-      keepRatio: true,
+      keepRatio: false,
       scalable: true,
       throttleScale: 0,
       rotatable: true,
       throttleRotate: 0,
+      origin: false,
     },
     text: "",
-    // imageSourse:{
-    //     [
-    //         {thumnail: ''}
-    //     ]
-    // }
+
     counter: {
       textC: [],
       schedulerC: [],
@@ -96,9 +150,9 @@ export default {
   }),
   methods: {
     handleDrag({ target, left, top }) {
-      //   console.log('onDrag left, top', left, top);
       target.style.left = `${left}px`;
       target.style.top = `${top}px`;
+      // console.log(target);
     },
     handleResize({ target, width, height, delta }) {
       console.log("onResize", width, height, delta);
@@ -116,26 +170,28 @@ export default {
     handleWarp({ target, transform }) {
       //   console.log('onWarp', target);
       target.style.transform = transform;
+    },  
+    dblclickEv({ target, transform }){
+        console.log('dblclick!')
+        console.log(target.innerHTML);
+        target.focus();
     },
-    clickEv({ target, transform }) {
-      console.log("click!");
-      console.log(target.innerHTML);
-      target.focus();
+    clickEv({ target, transform, currentTarget }){
+        this.$refs.moveable.moveable.target = target;
+        console.log(this.$refs.moveable.moveable.style);
     },
-    lining({}) {},
-    test() {
-      this.$refs.outline.innerHTML += pI;
-      // console.log(this.$refs.whiteBoard.innerHTML += pI)
+    test(){
+      this.comps.push(pI);
     },
-    createText() {
-      this.counter.textC.push(0);},
-    createScheduler() {
-      this.counter.schedulerC.push(0);},
-    createCanvas() {
-      this.counter.canvasC.push(0);
+    test2(){
+      console.log("click body!");
+      console.log(this.$refs.moveable.moveable); 
+      // this.$refs.moveable.moveable.display = none;
+        // this.$refs.moveable.moveable.target = null
     },
   },
-};
+  
+}
 </script>
 
 <style>
@@ -143,7 +199,6 @@ export default {
   font-family: "Roboto", sans-serif;
   position: relative;
   width: 300px;
-  height: 200px;
   text-align: center;
   font-size: 40px;
   margin: 0 auto;
@@ -207,4 +262,8 @@ textarea {
   border-radius: 5px;
   margin-right: 5px;
 }
+
+.moveable-control-box{
+    display:none;
+  }
 </style>
