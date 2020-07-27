@@ -7,7 +7,6 @@
         </div>
 
         <div class="container" ref="whiteBoard">
-          <component v-bind:is="comps"></component>
 
             <Moveable
             ref="moveable"
@@ -99,7 +98,6 @@
         </div>
 
     </div>
-  </div>
 </template>
 
 <script>
@@ -181,13 +179,24 @@ export default {
         console.log(this.$refs.moveable.moveable.style);
     },
     test(){
-      this.comps.push(pI);
+
+
     },
     test2(){
       console.log("click body!");
       console.log(this.$refs.moveable.moveable); 
       // this.$refs.moveable.moveable.display = none;
         // this.$refs.moveable.moveable.target = null
+    },
+
+    createText() {
+      this.counter.textC.push(0);
+    },
+    createScheduler() {
+      this.counter.schedulerC.push(0);
+    },
+    createCanvas() {
+      this.counter.canvasC.push(0);
     },
   },
   
