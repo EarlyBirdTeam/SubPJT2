@@ -20,6 +20,7 @@ Vue.use(Vuex)
 Vue.use(VueCookie)
  
 export default new Router({
+  mode: 'history',
   routes: [   
     // 로그인/가입
     { 
