@@ -1,4 +1,4 @@
-package com.websocket.chat.config;
+package com.websocket.auth;
 
 import com.websocket.chat.config.handler.StompHandler;
 import lombok.RequiredArgsConstructor;

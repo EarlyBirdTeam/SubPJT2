@@ -3,7 +3,7 @@ package com.websocket.chat.controller;
 import com.websocket.chat.model.ChatMessage;
 import com.websocket.chat.repo.ChatRoomRepository;
 import com.websocket.chat.service.ChatService;
-import com.websocket.chat.service.JwtTokenProvider;
+import com.websocket.auth.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.Header;

@@ -17,9 +17,9 @@ public class Channel implements Serializable {
     private long userCount; // 채팅방 인원수
 
     public static Channel create(String name) {
-        Channel chatRoom = new Channel();
-        chatRoom.channelId = UUID.randomUUID().toString();
-        chatRoom.name = name;
-        return chatRoom;
+        Channel channel = new Channel();
+        channel.channelId = UUID.randomUUID().toString();
+        channel.name = name;
+        return channel;
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+// Redis에 연결하기 위한 Connection 설정을 위한 객체
 @RequiredArgsConstructor
 @Configuration
 public class RedisConfig {
@@ -22,6 +23,11 @@ public class RedisConfig {
     @Bean
     public ChannelTopic channelTopic() {
         return new ChannelTopic("chatroom");
+    }
+
+    @Bean
+    public ChannelTopic channelTopic2() {
+        return new ChannelTopic("channel");
     }
 
     /**
