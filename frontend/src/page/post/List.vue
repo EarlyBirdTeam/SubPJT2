@@ -188,6 +188,11 @@
                           회원 관리 페이지
                         </router-link> 
                     </li>
+                    <li>
+                        <router-link v-bind:to="{name:constants.URL_TYPE.POST.TEST_BOARD}" class="btn--text">
+                         Vue-Moveable 테스트 페이지
+                        </router-link> 
+                    </li>
 
                 </ul>   
             </div>

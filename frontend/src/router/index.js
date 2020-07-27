@@ -13,12 +13,14 @@ import MyPage from '../page/user/MyPage.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
- 
+import Board from '../page/post/Test_Board.vue'
+
 Vue.use(Router) 
 Vue.use(Vuex)
 Vue.use(VueCookie)
  
 export default new Router({
+  mode: 'history',
   routes: [   
     // 로그인/가입
     { 
@@ -47,12 +49,18 @@ export default new Router({
       name: constants.URL_TYPE.POST.MAIN,
       component: List,
     },
+    { 
+      path: '/board',
+      name: constants.URL_TYPE.POST.TEST_BOARD,
+      component: Board,
+    },
 
     { 
       path: '/error',
       name: constants.ERROR.FRONT_ERROR,
       component: () => import('../page/etc/error.vue'),
     },
+
 
     // 그 외 페이지 (404, ERROR)
     {

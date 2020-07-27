@@ -16,6 +16,7 @@ export default {
         },
         POST: {
             MAIN : "main",
+            TEST_BOARD: "test_vue"
         },
     },
     METHODS:{
