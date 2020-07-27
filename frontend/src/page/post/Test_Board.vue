@@ -13,6 +13,7 @@
             @scale="handleScale"
             @rotate="handleRotate"
             @warp="handleWarp"
+            style="display: none;"
             >
             </Moveable> 
 
@@ -86,12 +87,12 @@ export default {
     handleDrag({ target, left, top, currentTarget, clientX}) {
       target.style.left = `${left}px`;
       target.style.top = `${top}px`;
-      console.log(target);
+      // console.log(target);
     },
     handleResize({
       target, width, height, delta,
     }) {
-      console.log('onResize', width, height , delta);
+      // console.log('onResize', width, height , delta);
       delta[0] && (target.style.width = `${width}px`);
       delta[1] && (target.style.height = `${height}px`);
     },
@@ -113,19 +114,10 @@ export default {
         target.focus();
     },
     clickEv({ target, transform, currentTarget }){
-        // console.log('click! : ', target.innerHTML)
-        // this.moveable.target = currentTarget
-        // console.log(currentTarget);
-        // // console.log(this.moveable.target);
-        // // target.focus();
-        // // target.setAttribute('class', 'target')
-        // console.log(this.moveable);
-        // console.log(target.style.left + ' and ' + target.style.top);
-        // console.log(this.$children[0]);
-        this.$refs.moveable.moveable.target = target
+
+        this.$refs.moveable.moveable.target = target;
         
-        console.log(target);
-      console.log(this.$refs.moveable.moveable.target);
+        console.log(this.$refs.moveable.moveable.style);
     },
     lining({}){
       
@@ -134,7 +126,10 @@ export default {
       this.comps.push(pI);
     },
     test2(){
-      // console.log(this.$refs.moveable);
+      console.log("click body!");
+      console.log(this.$refs.moveable.moveable); 
+      // this.$refs.moveable.moveable.display = none;
+        // this.$refs.moveable.moveable.target = null
     },
     showSomeData(){
 
@@ -149,7 +144,6 @@ export default {
   font-family: "Roboto", sans-serif;
   position: relative;
   width: 300px;
-  height: 200px;
   text-align: center;
   font-size: 40px;
   margin: 0 auto;
@@ -183,4 +177,8 @@ textarea {
     width: 100%;
     background-color: yellow;
 }
+
+.moveable-control-box{
+    display:none;
+  }
 </style>
