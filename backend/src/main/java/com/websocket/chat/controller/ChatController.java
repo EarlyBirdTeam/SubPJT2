@@ -4,8 +4,10 @@ import com.websocket.chat.model.ChatMessage;
 import com.websocket.chat.repo.ChatRoomRepository;
 import com.websocket.chat.service.ChatService;
 import com.websocket.chat.service.JwtTokenProvider;
+import com.websocket.chat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 @Controller
 public class  ChatController {
+
+    @Autowired
+    UserService userService;
 
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatRoomRepository chatRoomRepository;

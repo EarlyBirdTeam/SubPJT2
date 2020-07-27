@@ -11,3 +11,20 @@ spring:
     cache: false
   jwt:
     secret: govlepel@$&
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: earlyBird10Team@gmail.com
+    password: earlybird5959!
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssafy?autoReconnect=true&useUnicode=true&&characterEncoding=utf8
+    username: root
+    password: mariadb
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
