@@ -62,7 +62,7 @@
             },
             created() {
                 this.roomId = localStorage.getItem('wschat.roomId');
-                this.roomName = localStorage.getItem('wschat.roomName');
+                this.roomName  = localStorage.getItem('wschat.roomName');
                 var _this = this;
                 axios.get('/chat/user').then(response => {
                     _this.token = response.data.token;

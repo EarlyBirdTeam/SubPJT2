@@ -78,8 +78,10 @@
                         alert("방 제목을 입력해 주십시요.");
                         return;
                     } else {
+                        // *** 찾아보기
                         var params = new URLSearchParams();
                         params.append("name",this.room_name);
+                        // name=s 형식으로 전달.
                         axios.post('/chat/room', params)
                         .then(
                             response => {
