@@ -1,6 +1,11 @@
 <template >
     <div class="" id="board" @click="test2">
-        <button @click="test">Add Button</button>
+        <div>
+            <button @click="createText">Text</button>
+            <button @click="createScheduler">Scheduler</button>
+            <button @click="createCanvas">Canvas</button>
+        </div>
+
         <div class="container" ref="whiteBoard">
           <component v-bind:is="comps"></component>
 
@@ -43,11 +48,63 @@
                 33
                 </div>
             </div>
+
+            <Moveable
+        v-for="(a, idx) in counter.textC"
+        :key="idx"
+        class="moveable"
+        v-bind="moveable"
+        @drag="handleDrag"
+        @resize="handleResize"
+        @scale="handleScale"
+        @rotate="handleRotate"
+        @warp="handleWarp"
+      >
+        <textarea @dblclick="clickEv" ref="contentTextArea" name id="asdfasdf" cols="30" rows="3">
+                asdfa
+            </textarea>
+      </Moveable>
+
+      <Moveable
+        v-for="(a, idx) in counter.schedulerC"
+        :key="idx"
+        class="moveable2"
+        v-bind="moveable"
+        @drag="handleDrag"
+        @click="lining"
+        @resize="handleResize"
+        @scale="handleScale"
+        @rotate="handleRotate"
+        @warp="handleWarp"
+      >
+        <Scheduler />
+      </Moveable>
+
+      <Moveable
+        v-for="(a, idx) in counter.canvasC"
+        :key="idx"
+        class="moveable3"
+        v-bind="moveable"
+        @drag="handleDrag"
+        @click="lining"
+        @resize="handleResize"
+        @scale="handleScale"
+        @rotate="handleRotate"
+        @warp="handleWarp"
+      >
+        <Canvas/>
+      </Moveable>
+
+
         </div>
+
     </div>
+  </div>
 </template>
 
 <script>
+import Scheduler from "../../components/common/Scheduler";
+import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
 
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
@@ -60,9 +117,11 @@ const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
 
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Moveable,
+    Scheduler,
+    Canvas,
   },
   created() {
     
@@ -81,31 +140,35 @@ export default {
       throttleRotate: 0,
       origin: false,
     },
-    comps: [],
+    text: "",
+
+    counter: {
+      textC: [],
+      schedulerC: [],
+      canvasC: [],
+    },
   }),
   methods: {
-    handleDrag({ target, left, top, currentTarget, clientX}) {
+    handleDrag({ target, left, top }) {
       target.style.left = `${left}px`;
       target.style.top = `${top}px`;
       // console.log(target);
     },
-    handleResize({
-      target, width, height, delta,
-    }) {
-      // console.log('onResize', width, height , delta);
+    handleResize({ target, width, height, delta }) {
+      console.log("onResize", width, height, delta);
       delta[0] && (target.style.width = `${width}px`);
       delta[1] && (target.style.height = `${height}px`);
     },
     handleScale({ target, transform, scale }) {
-    //   console.log('onScale scale', scale);
+      //   console.log('onScale scale', scale);
       target.style.transform = transform;
     },
     handleRotate({ target, dist, transform }) {
-    //   console.log('onRotate', dist);
+      //   console.log('onRotate', dist);
       target.style.transform = transform;
     },
     handleWarp({ target, transform }) {
-    //   console.log('onWarp', target);
+      //   console.log('onWarp', target);
       target.style.transform = transform;
     },  
     dblclickEv({ target, transform }){
@@ -114,13 +177,8 @@ export default {
         target.focus();
     },
     clickEv({ target, transform, currentTarget }){
-
         this.$refs.moveable.moveable.target = target;
-        
         console.log(this.$refs.moveable.moveable.style);
-    },
-    lining({}){
-      
     },
     test(){
       this.comps.push(pI);
@@ -131,9 +189,6 @@ export default {
       // this.$refs.moveable.moveable.display = none;
         // this.$refs.moveable.moveable.target = null
     },
-    showSomeData(){
-
-    }
   },
   
 }
@@ -146,6 +201,30 @@ export default {
   width: 300px;
   text-align: center;
   font-size: 40px;
+  margin: 0 auto;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.moveable2 {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 800px;
+  height: 600px;
+  text-align: center;
+  font-size: 40px;
+  margin: 0 auto;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.moveable3 {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+  font-size: 32px;
   margin: 0 auto;
   font-weight: 100;
   letter-spacing: 1px;
@@ -164,18 +243,24 @@ export default {
   height: 500px;
   width: 80vw;
   /* transform: translate(-50%, -50%); */
-  border: solid 1px;
+  /* border: solid 1px; */
 }
 
-img{
-    height: 300px;
-    width: 300px;
+img {
+  height: 300px;
+  width: 300px;
 }
 
 textarea {
-    height: 100%;
-    width: 100%;
-    background-color: yellow;
+  height: 100%;
+  width: 100%;
+  background-color: yellow;
+}
+
+#board button {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 5px;
 }
 
 .moveable-control-box{
