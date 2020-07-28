@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Table(name = "user", schema = "ssafy")
 public class User implements Serializable {
 
     @Id @GeneratedValue(generator="system-uuid")
