@@ -50,10 +50,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         for (User u:list) {
             auth.inMemoryAuthentication().withUser(u.getEmail()).password("{noop}"+u.getPassword()).roles("USER");
         }
-//        auth.jdbcAuthentication().dataSource(dataSource)
-//                .usersByUsernameQuery("select email, password, true from user where email = ?")
-//                .authoritiesByUsernameQuery("select email, role from user where email = ?")
-//                .passwordEncoder(new SCryptPasswordEncoder());
-
     }
 }

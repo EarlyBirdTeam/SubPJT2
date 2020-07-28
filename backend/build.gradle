@@ -47,5 +47,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
     compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.60'
+// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.820'
+// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sqs
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-sqs', version: '1.11.827'
+    // https://mvnrepository.com/artifact/com.github.jmkgreen.morphia/morphia-entityscanner-plug
+    compile group: 'com.github.jmkgreen.morphia', name: 'morphia-entityscanner-plug', version: '1.00'
+
 
 }
