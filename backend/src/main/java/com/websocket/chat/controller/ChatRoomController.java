@@ -46,6 +46,7 @@ public class ChatRoomController {
         return "/chat/roomdetail";
     }
 
+
     @GetMapping("/room/{roomId}")
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
@@ -58,5 +59,17 @@ public class ChatRoomController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         return LoginInfo.builder().name(name).token(jwtTokenProvider.generateToken(name)).build();
+    }
+
+    // 캠 화면 입장
+    @GetMapping("/campage")
+    public String camPage(Model model){
+
+        return "/chat/cam";
+    }
+    @GetMapping("/naver")
+    public String camPage2(Model model){
+
+        return "naver.com";
     }
 }

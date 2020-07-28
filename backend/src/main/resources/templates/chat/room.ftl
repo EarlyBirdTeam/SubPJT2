@@ -30,6 +30,12 @@
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
             </div>
+
+            <!-- 화상캠방 -->
+            <br>
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="buttosn" @click="enterCamPage">화상채팅 방</button>
+            </div>
         </div>
         <ul class="list-group">
             <li class="list-group-item list-group-item-action" v-for="item in chatrooms" v-bind:key="item.roomId" v-on:click="enterRoom(item.roomId, item.name)">
@@ -81,6 +87,11 @@
                     localStorage.setItem('wschat.roomId',roomId);
                     localStorage.setItem('wschat.roomName',roomName);
                     location.href="/chat/room/enter/"+roomId;
+                },
+
+                enterCamPage: function(){
+                    //location.host="8000";
+                    location.href="http://localhost:8000/index.html";
                 }
             }
         });

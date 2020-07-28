@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class  ChatController {
+public class ChatController {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatRoomRepository chatRoomRepository;
