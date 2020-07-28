@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Router from 'vue-router'
 import VueCookie from 'vue-cookie'
-
 import constants from '../lib/constants'
 
 // 유저
@@ -13,7 +12,11 @@ import MyPage from '../page/user/MyPage.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
-import Board from '../page/post/Test_Board.vue'
+import Test from '../page/post/Test_Board.vue'
+import Create from '../page/post/Create_Community.vue'
+import Base from '../page/post/BaseBoard.vue'
+
+import Members from '../page/post/BoardMember.vue'
 
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -51,8 +54,23 @@ export default new Router({
     },
     { 
       path: '/board',
+      name: constants.URL_TYPE.POST.BASE,
+      component: Base
+    },
+    { 
+      path: '/board/test',
       name: constants.URL_TYPE.POST.TEST_BOARD,
-      component: Board,
+      component: Test,
+    },
+    { 
+      path: '/board/create',
+      name: constants.URL_TYPE.POST.CREATE,
+      component: Create,
+    },
+    { 
+      path: '/board/members',
+      name: constants.URL_TYPE.POST.MEMBERS,
+      component: Members,
     },
 
     { 

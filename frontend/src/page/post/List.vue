@@ -1,14 +1,8 @@
 <template>
     <div class="post">
         <div class="wrapB">
-            <h2>전체글</h2>
+            <h2>안녕하세요 <strong>이거모임</strong> 입니다</h2>
 
-            <section class="post-list">
-
-                <button>Created</button>
-                <button>Join</button>
-
-            </section>
         </div>
         
 

@@ -4,7 +4,7 @@
                 <h4>Test Link</h4>
                 <ul class="tag-list">
                     <li>
-                        <router-link v-bind:to="{name:constants.URL_TYPE.POST.MAIN}" class="btn--text">
+                        <router-link v-bind:to="{name:constants.URL_TYPE.POST.BASE}" class="btn--text">
                           <img src="https://image.flaticon.com/icons/svg/846/846449.svg" alt="">
                         </router-link> 
                     </li>
@@ -25,7 +25,7 @@
                     </li>
 
                     <li>
-                        <router-link v-bind:to="{name:constants.URL_TYPE.POST.TEST_BOARD}" class="btn--text">
+                        <router-link v-bind:to="{name:constants.URL_TYPE.POST.MEMBERS}" class="btn--text">
                          <img src="https://image.flaticon.com/icons/svg/615/615075.svg" alt="">
                         </router-link> 
                     </li>
@@ -56,7 +56,7 @@ export default {
      border-right: 3px solid rgb(223, 223, 223);
      text-align: center;
      
-     height: 30%;
+     height: 40%;
      top: 7.5%;
      left: 1%;
  }

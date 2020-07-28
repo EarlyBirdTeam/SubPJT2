@@ -1,5 +1,7 @@
 <template >
-    <div class="" id="board" @click="test2">
+    <div class="" id="board" @click="test2">      
+
+        <!-- <Sidebar/>  -->
 
 
 
@@ -73,7 +75,7 @@
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
-
+import Sidebar from '../../components/common/Sidebar.vue'
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 ref="contentTextArea" readonly="readonly"
                 name="" id="asdfasdf"
@@ -89,6 +91,7 @@ export default {
     Moveable,
     Scheduler,
     Canvas,
+    Sidebar
   },
   created() { 
     console.log(document.querySelector('.moveable-control-box'));

@@ -1,7 +1,7 @@
 <template>
     <div id="header" v-if="isHeader">
         <h1>
-            <router-link v-bind:to="{name:constants.URL_TYPE.POST.MAIN}">
+            <router-link class="white--text" v-bind:to="{name:constants.URL_TYPE.POST.MAIN}">
                 당신이 찾는 소모임 - 이거모임
             </router-link>
         </h1>
@@ -31,6 +31,7 @@
 
             <template v-if="this.$store.state.email != ''">
                 <div class="headBox">
+                    <CreateModal/>
                     <router-link v-bind:to="{name:constants.URL_TYPE.USER.MYPAGE}" class="btn--text">
                         {{userData}}
                     </router-link> 
@@ -44,7 +45,7 @@
 
         </div>  
         
-        
+            
             <loginModal @close="closeModal" v-if="modal">
                 
                 
@@ -77,11 +78,14 @@
     import loginModal from '../../page/user/Login.vue'
     import constants from '../../lib/constants'
     import cookies from 'vue-cookie'
-
+    import CreateModal from '../CreateModal'
     export default {
         name: 'Header',
         components: { 
-            loginModal
+            loginModal,
+            CreateModal
+    
+            
         },
         props: ['isHeader'],
         computed:{
@@ -161,6 +165,7 @@
 
                     const result = this.$store.dispatch(constants.METHODS.LOGIN_USER, {email, password});
                     console.log(this.userData);this.modal = !this.modal;
+                    this.$router.push('/board')
                   
                 };
 
@@ -186,7 +191,11 @@
 
 <style>
     #header{
-        border-bottom: 3px solid rgb(223, 223, 223)
+        border-bottom: 3px solid rgb(223, 223, 223);
+        background-color: #F57C00;
+    };
+    #header header_name{
+        color:rgb(223, 223, 223);
     }
 </style>
 

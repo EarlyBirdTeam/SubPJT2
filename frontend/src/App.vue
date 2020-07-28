@@ -2,8 +2,9 @@
   <v-app>
     <v-main id="bg">
       <Header :isHeader="isHeader"/>
-      <!-- <Sidebar :isSidebar="isSidebar"/> -->
-      <Sidebar> </Sidebar>
+      
+      <div v-if="isSidebar"><Sidebar/></div>
+
       <router-view id="container"/>
     </v-main>
   </v-app>
@@ -12,7 +13,8 @@
 <script>
 import './assets/css/style.scss' 
 import Header from './components/common/Header.vue'
-import Sidebar from './components/common/Sidebar.vue'
+import Sidebar from './components/common/Sidebar'
+import CreateModal from './components/CreateModal'
 import constants from './lib/constants' 
 import axios from 'axios'
 
@@ -20,17 +22,21 @@ export default {
   name: 'App',
   components: { 
     Header,
+    CreateModal,
     Sidebar
+
   },
   created() {
       let url = this.$route.name;
 
       this.checkUrl(url);
+      this.checkSide(url);
   },
   watch: {
       $route (to){
 
           this.checkUrl(to.name);
+          this.checkSide(to.name)
       }
   },
   methods : {
@@ -43,21 +49,35 @@ export default {
           ];
 
           let isHeader = true;
-          let isSidebar = true;
+         
           // array.map(path => {
           //     if (url === path)
           //         isHeader = false;
           //         isSidebar = false;
           // })
           this.isHeader = isHeader;
-          this.isSidebar = isSidebar;
+    
 
       },
+      checkSide(url) {
+        let array = [
+          "members","test_vue","base"
+        ];
+        console.log(url)
+        let isSidebar = false;
+        array.map(path => {
+              if (url === path)
+              
+                  isSidebar = true;
+          })
+        this.isSidebar = isSidebar;
+
+      }
   },
   data: function () {
         return {
             isHeader: true,
-            isSidebar: true,
+            isSidebar: false,
             constants,
         } 
     }

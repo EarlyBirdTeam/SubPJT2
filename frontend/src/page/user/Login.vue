@@ -12,7 +12,7 @@
                         <div class="add-option">
                             <div class="wrap">
                                 <p>아직 회원이 아니신가요?</p>
-                                <router-link v-bind:to="{name:constants.URL_TYPE.USER.JOIN}" class="btn--text">
+                                <router-link v-bind:to="{name:constants.URL_TYPE.USER.JOIN}" class="btn--text" >
                                     회원가입
                                 </router-link>
                             </div>

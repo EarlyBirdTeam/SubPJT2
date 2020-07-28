@@ -16,7 +16,10 @@ export default {
         },
         POST: {
             MAIN : "main",
-            TEST_BOARD: "test_vue"
+            BASE : "base",
+            TEST_BOARD: "test_vue",
+            CREATE: "create",
+            MEMBERS: "members",
         },
     },
     METHODS:{

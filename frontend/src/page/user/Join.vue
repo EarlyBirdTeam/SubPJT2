@@ -112,11 +112,7 @@
                     email, password, nickName, realName
                      });
                 this.$router.push(constants.URL_TYPE.USER.JOINDONE);
-                }
-
-
-
-                  
+                }                
             }
         },
         watch: {
