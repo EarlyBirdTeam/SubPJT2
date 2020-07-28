@@ -1,109 +1,112 @@
 <template >
-    <div class="" id="board" @click="test2">
-        <div>
-            <button @click="createText">Text</button>
-            <button @click="createScheduler">Scheduler</button>
-            <button @click="createCanvas">Canvas</button>
-        </div>
+  <div id="board" @click="test2">
+    <div>
+      <h2>공유 보드</h2>
+      <div class="add_modules border rounded">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn @click="createText" v-bind="attrs" v-on="on">
+              <v-icon>mdi-format-text</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Textarea</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn @click="createScheduler" v-bind="attrs" v-on="on">
+              <v-icon>mdi-calendar</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Calendar</span>
+        </v-tooltip>              
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn @click="createCanvas" v-bind="attrs" v-on="on">
+              <v-icon>mdi-draw</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Drawing Tool</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on">
+              <v-icon>mdi-map</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Map</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on">
+              <v-icon>mdi-vote</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Map</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on">
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Members</span>
+        </v-tooltip>
+      </div>
+      <div id="board" class="board border rounded">
+        <Moveable
+          v-for="(a, idx) in counter.textC"
+          :key="idx"
+          class="moveable"
+          v-bind="moveable"
+          @drag="handleDrag"
+          @resize="handleResize"
+          @scale="handleScale"
+          @rotate="handleRotate"
+          @warp="handleWarp"
+        >
+          <textarea @dblclick="clickEv" ref="contentTextArea" name id="asdfasdf" cols="30" rows="3">
+                  asdfasdf
+              </textarea>
+        </Moveable>
 
-        <div class="container" ref="whiteBoard">
+        <Moveable
+          v-for="(a, idx) in counter.schedulerC"
+          :key="idx"
+          class="moveable2"
+          v-bind="moveable"
+          @drag="handleDrag"
+          @click="lining"
+          @resize="handleResize"
+          @scale="handleScale"
+          @rotate="handleRotate"
+          @warp="handleWarp"
+        >
+          <Scheduler />
+        </Moveable>
 
-            <Moveable
-            ref="moveable"
-            class="moveable"
-            v-bind="moveable"
-            @drag="handleDrag"
-            @resize="handleResize"
-            @scale="handleScale"
-            @rotate="handleRotate"
-            @warp="handleWarp"
-            style="display: none;"
-            >
-            </Moveable> 
-
-              <div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
-                ref="contentTextArea" readonly="readonly"
-                name="" id="asdfasdf"
-                draggable="false"
-               >
-                it's Post it!
-                </div>
-            <div class="moveable" style="left: -1px; top: 0px;" @click="clickEv" >
-              <div @dblclick="dblclickEv" 
-                ref="contentTextArea" readonly="readonly"
-                name="" id="asdfasdf"
-                draggable="false"
-                style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
-                22
-                </div>
-            </div>
-
-            <div class="moveable" style="left: -1px; top: 0px;" @click="clickEv" >
-              <div @dblclick="dblclickEv" 
-                ref="contentTextArea" readonly="readonly"
-                name="" id="asdfasdf"
-                draggable="false"
-                style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
-                33
-                </div>
-            </div>
-
-            <Moveable
-        v-for="(a, idx) in counter.textC"
-        :key="idx"
-        class="moveable"
-        v-bind="moveable"
-        @drag="handleDrag"
-        @resize="handleResize"
-        @scale="handleScale"
-        @rotate="handleRotate"
-        @warp="handleWarp"
-      >
-        <textarea @dblclick="clickEv" ref="contentTextArea" name id="asdfasdf" cols="30" rows="3">
-                asdfa
-            </textarea>
-      </Moveable>
-
-      <Moveable
-        v-for="(a, idx) in counter.schedulerC"
-        :key="idx"
-        class="moveable2"
-        v-bind="moveable"
-        @drag="handleDrag"
-        @click="lining"
-        @resize="handleResize"
-        @scale="handleScale"
-        @rotate="handleRotate"
-        @warp="handleWarp"
-      >
-        <Scheduler />
-      </Moveable>
-
-      <Moveable
-        v-for="(a, idx) in counter.canvasC"
-        :key="idx"
-        class="moveable3"
-        v-bind="moveable"
-        @drag="handleDrag"
-        @click="lining"
-        @resize="handleResize"
-        @scale="handleScale"
-        @rotate="handleRotate"
-        @warp="handleWarp"
-      >
-        <Canvas/>
-      </Moveable>
-
-
-        </div>
-
+        <Moveable
+          v-for="(a, idx) in counter.canvasC"
+          :key="idx"
+          class="moveable3"
+          v-bind="moveable"
+          @drag="handleDrag"
+          @click="lining"
+          @resize="handleResize"
+          @scale="handleScale"
+          @rotate="handleRotate"
+          @warp="handleWarp"
+        >
+          <Canvas />
+        </Moveable>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
-import Moveable from 'vue-moveable';
+import Moveable from "vue-moveable";
 
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 ref="contentTextArea" readonly="readonly"
@@ -111,8 +114,7 @@ const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 draggable="false"
                >
                 it's Post it!
-                </div>`
-
+                </div>`;
 
 export default {
   name: "app",
@@ -121,12 +123,10 @@ export default {
     Scheduler,
     Canvas,
   },
-  created() {
-    
-  },
+  created() {},
   data: () => ({
     moveable: {
-      target: '',
+      target: "",
       draggable: true,
       throttleDrag: 1,
       resizable: false,
@@ -168,25 +168,22 @@ export default {
     handleWarp({ target, transform }) {
       //   console.log('onWarp', target);
       target.style.transform = transform;
-    },  
-    dblclickEv({ target, transform }){
-        console.log('dblclick!')
-        console.log(target.innerHTML);
-        target.focus();
     },
-    clickEv({ target, transform, currentTarget }){
-        this.$refs.moveable.moveable.target = target;
-        console.log(this.$refs.moveable.moveable.style);
+    dblclickEv({ target, transform }) {
+      console.log("dblclick!");
+      console.log(target.innerHTML);
+      target.focus();
     },
-    test(){
-
-
+    clickEv({ target, transform, currentTarget }) {
+      this.$refs.moveable.moveable.target = target;
+      console.log(this.$refs.moveable.moveable.style);
     },
-    test2(){
+    test() {},
+    test2() {
       console.log("click body!");
-      console.log(this.$refs.moveable.moveable); 
+      console.log(this.$refs.moveable.moveable);
       // this.$refs.moveable.moveable.display = none;
-        // this.$refs.moveable.moveable.target = null
+      // this.$refs.moveable.moveable.target = null
     },
 
     createText() {
@@ -199,8 +196,7 @@ export default {
       this.counter.canvasC.push(0);
     },
   },
-  
-}
+};
 </script>
 
 <style>
@@ -272,7 +268,14 @@ textarea {
   margin-right: 5px;
 }
 
-.moveable-control-box{
-    display:none;
-  }
+.moveable-control-box {
+  display: none;
+}
+
+.whiteboard {
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  margin-top: 5px;
+  height: 800px;
+
+}
 </style>

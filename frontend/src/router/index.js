@@ -14,7 +14,7 @@ import MyPage from '../page/user/MyPage.vue'
 // 포스트
 import List from '../page/post/List.vue'
 import Board from '../page/post/Test_Board.vue'
-
+import theme2 from '../page/post/theme2'
 Vue.use(Router) 
 Vue.use(Vuex)
 Vue.use(VueCookie)
@@ -47,7 +47,7 @@ export default new Router({
     { 
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
-      component: List,
+      component: theme2,
     },
     { 
       path: '/board',

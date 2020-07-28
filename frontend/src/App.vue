@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <Header :isHeader="isHeader"/>
+      <!-- <Header :isHeader="isHeader"/> -->
       <router-view/>
     </v-main>
   </v-app>
