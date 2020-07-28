@@ -1,6 +1,6 @@
-package com.websocket.chat.config;
+package com.websocket.board.config;
 
-import com.websocket.chat.pubsub.RedisSubscriber;
+import com.websocket.board.pubsub.RedisSubscriber;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class RedisConfig {
      */
     @Bean
     public ChannelTopic channelTopic() {
-        return new ChannelTopic("charRoom");
+        return new ChannelTopic("channel");
     }
 
     /**

@@ -1,9 +1,9 @@
 package com.websocket.chat.controller;
 
+import com.websocket.chat.config.JwtTokenProvider;
 import com.websocket.chat.model.ChatRoom;
 import com.websocket.chat.model.LoginInfo;
 import com.websocket.chat.repo.ChatRoomRepository;
-import com.websocket.auth.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

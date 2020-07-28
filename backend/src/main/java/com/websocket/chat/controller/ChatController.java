@@ -1,9 +1,9 @@
 package com.websocket.chat.controller;
 
+import com.websocket.chat.config.JwtTokenProvider;
 import com.websocket.chat.model.ChatMessage;
 import com.websocket.chat.repo.ChatRoomRepository;
 import com.websocket.chat.service.ChatService;
-import com.websocket.auth.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.Header;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class  ChatController {
+public class ChatController {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatRoomRepository chatRoomRepository;
