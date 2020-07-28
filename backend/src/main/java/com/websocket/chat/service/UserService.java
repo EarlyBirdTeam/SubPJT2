@@ -2,6 +2,7 @@ package com.websocket.chat.service;
 
 import com.websocket.chat.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -19,5 +20,7 @@ public interface UserService {
     User updateUser(User user);
 
     boolean deleteUser(String email, String password);
+
+    List<User> findAll();
 
 }
