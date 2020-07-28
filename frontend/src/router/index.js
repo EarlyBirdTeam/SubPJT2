@@ -15,6 +15,9 @@ import MyPage from '../page/user/MyPage.vue'
 import List from '../page/post/List.vue'
 import Board from '../page/post/Test_Board.vue'
 
+// test
+import Poll from '../components/common/Poll.vue'
+
 Vue.use(Router) 
 Vue.use(Vuex)
 Vue.use(VueCookie)
@@ -67,8 +70,13 @@ export default new Router({
       path: '*',
       name: 'e404',
       component: () => import('../page/etc/e404.vue')
-    }
+    },
 
-    
+    //test
+    { 
+      path: '/poll',
+      name: 'poll',
+      component: Poll,
+    },
   ]
 })
