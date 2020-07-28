@@ -7,31 +7,38 @@
         name="" id="paperTitle"
         class="notMoveBox"
         cols="30" rows="1"
+        v-model="thisTitle"
         @click.prevent.self
-        >Title</textarea>
+        ></textarea>
 
         <textarea
         name="" id="paperContent"
         class="notMoveBox"
+        v-model="thisContent"
         cols="30" rows="5"
-        >Content</textarea>
+        ></textarea>
     </div>
 </template>
 
 <script>
 export default {
+    props:{
+        uid: Number,
+        title: String,
+        content: String,
+    },
+    watch:{
+        thisTitle: function(){
+            this.$emit('setTitle', this.thisTitle, this.uid);
+        },
+        thisContent: function(){
+            this.$emit('setContent', this.thisContent, this.uid);
+        }
+    },
     data() {
         return {
-            poll: {
-                question: "",
-                answers: [
-                    { answer: "" }
-                ],
-                multipleVotes: false
-            },
-            title:'',
-            content:'',
-
+            thisTitle:"Title",
+            thisContent:"Content",
         };
     }
 }

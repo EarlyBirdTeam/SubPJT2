@@ -1,10 +1,11 @@
 <template >
-    <div class="" id="board" @click="test2">
+    <div class="" id="board" @click="test3">
 
 
 
         <div class="bodyBox " ref="whiteBoard" @dblclick="focusAction"
-          @click="changeTargetAction">
+          @click="changeTargetAction"
+          @mousedown="test3" @click.right="test4">
 
           <Moveable
           ref="moveable"
@@ -45,23 +46,13 @@
           v-for="(a, idx) in counter.textC"
           :key="idx"
           style="position: relative;
-                display: inline-block" />
+                display: inline-block"
+          :uid="a"
+          :title="board.postits[a].title"
+          :content="board.postits[a].content"
+          v-on:setTitle="changePITitle"
+          v-on:setContent="changePIContent"/>
             
-
-          <!-- <textarea  @dblclick="focusAction"
-          @click="changeTargetAction"
-          
-          @keydown.delete="test2"
-          v-for="(a, idx) in counter.textC"
-          class="moveable"
-          style="background-color:yellow"
-          :key="idx"
-          ref="contentTextArea"
-          id="asdfasdf"
-          placeholder="It's Post it!"
-          cols="30" rows="3">
-          </textarea> -->
-
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
           v-for="(a, idx) in counter.schedulerC"
@@ -133,13 +124,24 @@ export default {
       origin: false,
     },
     text: "",
-
     counter: {
       textC: [],
       schedulerC: [],
       canvasC: [],
       pollC: [],
     },
+    board: {
+      idCounter: 0, 
+      postits: [],
+      polls: [],
+    },
+    channelId: '',
+    channelName: '',
+    sender: '',
+    postit: '',
+    postitList: [],
+    token: '',
+    userCount: 0,
   }),
   methods: {
     handleDrag({ target, left, top }) {
@@ -203,22 +205,44 @@ export default {
       console.log("click body!");
       document.querySelector('.moveable-control-box').style.display = 'none';
     },
+    test3({target}){
+      console.log("click target!");
+      console.log(target.style.left);
+    },
+    test4({target}){
+      target.style.left = "100px";
+
+    },
+    changePITitle: function(value,index){
+      console.log("title is changed!",index ,value);
+      this.board.postits[index].title = value;
+    },
+    changePIContent: function(value,index){
+      console.log("content is changed!",index ,value);
+      this.board.postits[index].content = value;
+    },
 
     createText(event) {
       event.stopPropagation();
-      this.counter.textC.push(0);
+      this.counter.textC.push(this.counter.textC.length);
+      // this.board.idCounter++;
+      this.board.postits.push({
+        "pid":this.board.idCounter++,
+        "title": "title",
+        "content": "content" ,
+      });
     },
     createScheduler() {
       event.stopPropagation();
-      this.counter.schedulerC.push(0);
+      this.counter.schedulerC.push(this.counter.schedulerC.length);
     },
     createCanvas() {
       event.stopPropagation();
-      this.counter.canvasC.push(0);
+      this.counter.canvasC.push(this.counter.canvasC.length);
     },
     createPoll() {
       event.stopPropagation();
-      this.counter.pollC.push(0);
+      this.counter.pollC.push(this.counter.pollC.length);
     }
   },
   
