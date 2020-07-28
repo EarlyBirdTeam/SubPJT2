@@ -35,8 +35,11 @@
             </v-btn>
           </v-toolbar>
 
-    
-          <textarea @dblclick="focusAction"
+          <Postit @dblclick="focusAction"
+          @click="changeTargetAction"
+          v-for="(a, idx) in counter.textC"
+          :key="idx"/>
+          <!-- <textarea @dblclick="focusAction"
           @click="changeTargetAction"
           v-for="(a, idx) in counter.textC"
           class="moveable"
@@ -45,7 +48,7 @@
           id="asdfasdf"
           placeholder="It's Post it!"
           cols="30" rows="3">
-          </textarea>
+          </textarea> -->
 
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
@@ -73,6 +76,7 @@
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
+import Postit from '../../components/common/Postit';
 
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 ref="contentTextArea" readonly="readonly"
@@ -89,6 +93,7 @@ export default {
     Moveable,
     Scheduler,
     Canvas,
+    Postit,
   },
   created() { 
     console.log(document.querySelector('.moveable-control-box'));
