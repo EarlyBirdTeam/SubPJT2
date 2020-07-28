@@ -2,7 +2,7 @@
     <div id="header" v-if="isHeader">
         <h1>
             <router-link v-bind:to="{name:constants.URL_TYPE.POST.MAIN}">
-                SS_log
+                당신이 찾는 소모임 - 이거모임
             </router-link>
         </h1>
         <div class="right">
@@ -183,6 +183,12 @@
 
 
 </script>
+
+<style>
+    #header{
+        border-bottom: 3px solid rgb(223, 223, 223)
+    }
+</style>
 
 
 
