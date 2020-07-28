@@ -1,106 +1,75 @@
 <template >
     <div class="" id="board" @click="test2">
-        <div>
-            <button @click="createText">Text</button>
-            <button @click="createScheduler">Scheduler</button>
-            <button @click="createCanvas">Canvas</button>
-        </div>
 
-        <div class="container" ref="whiteBoard">
 
-            <Moveable
-            ref="moveable"
-            class="moveable"
-            v-bind="moveable"
-            @drag="handleDrag"
-            @resize="handleResize"
-            @scale="handleScale"
-            @rotate="handleRotate"
-            @warp="handleWarp"
-            style="display: none;"
-            >
-            </Moveable> 
 
-              <div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
-                ref="contentTextArea" readonly="readonly"
-                name="" id="asdfasdf"
-                draggable="false"
-               >
-                it's Post it!
-                </div>
-            <div class="moveable" style="left: -1px; top: 0px;" @click="clickEv" >
-              <div @dblclick="dblclickEv" 
-                ref="contentTextArea" readonly="readonly"
-                name="" id="asdfasdf"
-                draggable="false"
-                style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
-                22
-                </div>
-            </div>
+        <div class="bodyBox" ref="whiteBoard">
 
-            <div class="moveable" style="left: -1px; top: 0px;" @click="clickEv" >
-              <div @dblclick="dblclickEv" 
-                ref="contentTextArea" readonly="readonly"
-                name="" id="asdfasdf"
-                draggable="false"
-                style="position: absolute; ; width: 400px; text-align: center;text-align: center; transform: translate(166px, 113px) rotate(0deg) scale(1, 1);">
-                33
-                </div>
-            </div>
+          <Moveable
+          ref="moveable"
+          class="moveable"
+          v-bind="moveable"
+          @drag="handleDrag"
+          @resize="handleResize"
+          @scale="handleScale"
+          @rotate="handleRotate"
+          @warp="handleWarp"
+          style="display: none;"
+          >
+          </Moveable> 
 
-            <Moveable
-        v-for="(a, idx) in counter.textC"
-        :key="idx"
-        class="moveable"
-        v-bind="moveable"
-        @drag="handleDrag"
-        @resize="handleResize"
-        @scale="handleScale"
-        @rotate="handleRotate"
-        @warp="handleWarp"
-      >
-        <textarea @dblclick="clickEv" ref="contentTextArea" name id="asdfasdf" cols="30" rows="3">
-                asdfa
-            </textarea>
-      </Moveable>
+          <!-- 도구상자 -->
+          <v-toolbar class=" toolBox" @dblclick="changeTargetAction" >
+            <v-btn icon color="orange" @click="createText">
+              <v-icon>mdi-message</v-icon>
+            </v-btn>
 
-      <Moveable
-        v-for="(a, idx) in counter.schedulerC"
-        :key="idx"
-        class="moveable2"
-        v-bind="moveable"
-        @drag="handleDrag"
-        @click="lining"
-        @resize="handleResize"
-        @scale="handleScale"
-        @rotate="handleRotate"
-        @warp="handleWarp"
-      >
-        <Scheduler />
-      </Moveable>
+            
+            <v-btn icon color="orange" @click="createScheduler">
+              <v-icon>mdi-book</v-icon>
+            </v-btn>
 
-      <Moveable
-        v-for="(a, idx) in counter.canvasC"
-        :key="idx"
-        class="moveable3"
-        v-bind="moveable"
-        @drag="handleDrag"
-        @click="lining"
-        @resize="handleResize"
-        @scale="handleScale"
-        @rotate="handleRotate"
-        @warp="handleWarp"
-      >
-        <Canvas/>
-      </Moveable>
+            
+            <v-btn icon color="orange" @click="createCanvas">
+              <v-icon>mdi-palette</v-icon>
+            </v-btn>
+          </v-toolbar>
 
+    
+          <textarea @dblclick="focusAction"
+          @click="changeTargetAction"
+          v-for="(a, idx) in counter.textC"
+          class="moveable"
+          :key="idx"
+          ref="contentTextArea"
+          id="asdfasdf"
+          placeholder="It's Post it!"
+          cols="30" rows="3">
+          </textarea>
+
+          <Scheduler @mousedown.stop
+          @dblclick="changeTargetAction"
+          v-for="(a, idx) in counter.schedulerC"
+          :key="idx"
+          class="moveable2" />
+
+          <div @dblclick="focusAction"
+          @click="changeTargetAction"
+          v-for="(a, idx) in counter.canvasC"
+          :key="idx"
+          class="moveable3">
+            <Canvas />
+          </div>
 
         </div>
 
     </div>
 </template>
 
+
+
 <script>
+
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
@@ -121,8 +90,8 @@ export default {
     Scheduler,
     Canvas,
   },
-  created() {
-    
+  created() { 
+    console.log(document.querySelector('.moveable-control-box'));
   },
   data: () => ({
     moveable: {
@@ -169,33 +138,33 @@ export default {
       //   console.log('onWarp', target);
       target.style.transform = transform;
     },  
-    dblclickEv({ target, transform }){
-        console.log('dblclick!')
-        console.log(target.innerHTML);
+    focusAction({ target, transform }){
         target.focus();
     },
-    clickEv({ target, transform, currentTarget }){
-        this.$refs.moveable.moveable.target = target;
-        console.log(this.$refs.moveable.moveable.style);
+    changeTargetAction({target}){
+      this.test();
+      event.stopPropagation();
+      target.blur();
+      this.$refs.moveable.moveable.target = target;
     },
     test(){
-
-
+      document.querySelector('.moveable-control-box').style.display = 'block';
     },
     test2(){
       console.log("click body!");
-      console.log(this.$refs.moveable.moveable); 
-      // this.$refs.moveable.moveable.display = none;
-        // this.$refs.moveable.moveable.target = null
+      document.querySelector('.moveable-control-box').style.display = 'none';
     },
 
-    createText() {
+    createText(event) {
+      event.stopPropagation();
       this.counter.textC.push(0);
     },
     createScheduler() {
+      event.stopPropagation();
       this.counter.schedulerC.push(0);
     },
     createCanvas() {
+      event.stopPropagation();
       this.counter.canvasC.push(0);
     },
   },
@@ -208,11 +177,13 @@ export default {
   font-family: "Roboto", sans-serif;
   position: relative;
   width: 300px;
+  height: 100px;
   text-align: center;
   font-size: 40px;
   margin: 0 auto;
   font-weight: 100;
   letter-spacing: 1px;
+  background-color: yellow;
 }
 
 .moveable2 {
@@ -222,7 +193,7 @@ export default {
   height: 600px;
   text-align: center;
   font-size: 40px;
-  margin: 0 auto;
+  margin: 0 0;
   font-weight: 100;
   letter-spacing: 1px;
 }
@@ -247,10 +218,11 @@ export default {
   white-space: nowrap;
 }
 
-.container {
+.bodyBox {
   position: relative;
-  height: 500px;
+  height: 100%;
   width: 80vw;
+  margin: 1% 3%;
   /* transform: translate(-50%, -50%); */
   /* border: solid 1px; */
 }
@@ -275,4 +247,12 @@ textarea {
 .moveable-control-box{
     display:none;
   }
+
+
+.toolBox{
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 400px;
+}
+  
 </style>
