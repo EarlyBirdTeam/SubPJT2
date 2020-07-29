@@ -35,7 +35,7 @@ export default {
   },
   methods : {
       checkUrl(url) { 
-
+          console.log(url);
           let array = [
               constants.URL_TYPE.USER.LOGIN,
               constants.URL_TYPE.USER.JOIN,

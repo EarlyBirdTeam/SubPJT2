@@ -17,6 +17,7 @@ import Board from '../page/post/Test_Board.vue'
 
 // test
 import Poll from '../components/common/Poll.vue'
+import Map from '../components/common/Map.vue'
 
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -77,6 +78,11 @@ export default new Router({
       path: '/poll',
       name: 'poll',
       component: Poll,
+    },
+    { 
+      path: '/map',
+      name: 'map',
+      component: Map,
     },
   ]
 })
