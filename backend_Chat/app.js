@@ -22,7 +22,7 @@ io.on('connection', function(socket) {
 
         // 접속된 모든 클라이언트에게 메시지를 전송한다
         // 'data.userid' has joined 가 index.html 에 출력. emit과 on방식 알기
-        io.emit('login', data.userid );
+        io.emit('login', data.name );
     });
 
     // 클라이언트로부터의 메시지가 수신되면
@@ -60,6 +60,6 @@ io.on('connection', function(socket) {
     });
 });
 
-server.listen(3001, function() {
-    console.log('Socket IO server listening on port 3001');
+server.listen(3000, function() {
+    console.log('Socket IO server listening on port 3000');
 });

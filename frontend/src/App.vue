@@ -2,7 +2,7 @@
   <v-app>
     <v-main id="bg">
       <Header :isHeader="isHeader"/>
-      
+
       <div v-if="isSidebar"><Sidebar/></div>
 
       <router-view id="container"/>
@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import './assets/css/style.scss' 
+import './assets/css/style.scss'
 import Header from './components/common/Header.vue'
 import Sidebar from './components/common/Sidebar'
 import CreateModal from './components/CreateModal'
-import constants from './lib/constants' 
+import constants from './lib/constants'
 import axios from 'axios'
 
 export default {
   name: 'App',
-  components: { 
+  components: {
     Header,
     CreateModal,
     Sidebar
@@ -40,7 +40,7 @@ export default {
       }
   },
   methods : {
-      checkUrl(url) { 
+      checkUrl(url) {
 
           let array = [
               constants.URL_TYPE.USER.LOGIN,
@@ -49,14 +49,14 @@ export default {
           ];
 
           let isHeader = true;
-         
+
           // array.map(path => {
           //     if (url === path)
           //         isHeader = false;
           //         isSidebar = false;
           // })
           this.isHeader = isHeader;
-    
+
 
       },
       checkSide(url) {
@@ -67,7 +67,7 @@ export default {
         let isSidebar = false;
         array.map(path => {
               if (url === path)
-              
+
                   isSidebar = true;
           })
         this.isSidebar = isSidebar;
@@ -79,11 +79,11 @@ export default {
             isHeader: true,
             isSidebar: false,
             constants,
-        } 
+        }
     }
 }
 </script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style >
   #container{
     /* width: 90vw; */
