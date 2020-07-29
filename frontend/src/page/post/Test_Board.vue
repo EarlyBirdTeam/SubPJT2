@@ -3,7 +3,8 @@
 
 
 
-        <div class="bodyBox" ref="whiteBoard">
+        <div class="bodyBox " ref="whiteBoard" @dblclick="focusAction"
+          @click="changeTargetAction">
 
           <Moveable
           ref="moveable"
@@ -39,14 +40,21 @@
             </v-btn>
           </v-toolbar>
 
-          <Postit @dblclick="focusAction"
-          @click="changeTargetAction"
+
+          <Postit 
           v-for="(a, idx) in counter.textC"
-          :key="idx"/>
-          <!-- <textarea @dblclick="focusAction"
+          :key="idx"
+          style="position: relative;
+                display: inline-block" />
+            
+
+          <!-- <textarea  @dblclick="focusAction"
           @click="changeTargetAction"
+          
+          @keydown.delete="test2"
           v-for="(a, idx) in counter.textC"
           class="moveable"
+          style="background-color:yellow"
           :key="idx"
           ref="contentTextArea"
           id="asdfasdf"
@@ -68,11 +76,11 @@
             <Canvas />
           </div>
 
-          <Poll @mousedown.stop
-          @dblclick="changeTargetAction"
+          <Poll
           v-for="(a, idx) in counter.pollC"
           :key="idx"
-          
+          style="position: relative;
+                display: inline-block"
           />
 
         </div>
@@ -109,7 +117,6 @@ export default {
     Poll,
   },
   created() { 
-    console.log(document.querySelector('.moveable-control-box'));
   },
   data: () => ({
     moveable: {
@@ -162,9 +169,32 @@ export default {
     },
     changeTargetAction({target}){
       this.test();
-      event.stopPropagation();
-      target.blur();
-      this.$refs.moveable.moveable.target = target;
+
+      // if(target.getAttribute('class') != null){
+      //   var clas = target.getAttribute('class').split(' ');
+      
+      //   for(var cla in clas){
+      //     // console.log(clas[cla]);
+      //     if(clas[cla] == 'notMoveBox'){return;}
+      //   }
+      // }
+      if(target.getAttribute('class') != null){
+        var clas = target.getAttribute('class').split(' ');
+      
+        for(var cla in clas){
+          // console.log(clas[cla]);
+          if(clas[cla] == 'MoveableBox'){
+            event.stopPropagation();
+            target.blur();
+            this.$refs.moveable.moveable.target = target;
+          }
+        }
+      }
+
+
+      // event.stopPropagation();
+      // target.blur();
+      // this.$refs.moveable.moveable.target = target;
     },
     test(){
       document.querySelector('.moveable-control-box').style.display = 'block';
@@ -206,7 +236,7 @@ export default {
   margin: 0 auto;
   font-weight: 100;
   letter-spacing: 1px;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .moveable2 {
@@ -242,7 +272,7 @@ export default {
 }
 
 .bodyBox {
-  position: relative;
+  /* position: relative; */
   height: 100%;
   width: 80vw;
   margin: 1% 3%;
