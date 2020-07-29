@@ -26,14 +26,14 @@
             <div class="input-group-prepend">
                 <label class="input-group-text">방제목</label>
             </div>
-            <input type="text" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
+            <input type="text" class="form-control" v-model="channel_name" v-on:keyup.enter="createChannel">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
+                <button class="btn btn-primary" type="button" @click="createChannel">채널 개설</button>
             </div>
         </div>
         <ul class="list-group">
-            <li class="list-group-item list-group-item-action" v-for="item in chatrooms" v-bind:key="item.roomId" v-on:click="enterRoom(item.roomId, item.name)">
-                <h6>{{item.name}} <span class="badge badge-info badge-pill">{{item.userCount}}</span></h6>
+            <li class="list-group-item list-group-item-action" v-for="item in channels" v-bind:key="item.channelId" v-on:click="enterRoom(item.channelId, item.channelName)">
+                <h6>{{item.channelName}} <span class="badge badge-info badge-pill">{{item.userCount}}</span></h6>
             </li>
         </ul>
     </div>
@@ -44,43 +44,43 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                room_name : '',
-                chatrooms: [
+                channel_name : '',
+                channels: [
                 ]
             },
             created() {
-                this.findAllRoom();
+                this.findAllChannel();
             },
             methods: {
-                findAllRoom: function() {
+                findAllChannel: function() {
                     axios.get('/board/channels').then(response => {
                         // prevent html, allow json array
                         if(Object.prototype.toString.call(response.data) === "[object Array]")
-                            this.chatrooms = response.data;
+                            this.channels = response.data;
                     });
                 },
-                createRoom: function() {
-                    if("" === this.room_name) {
+                createChannel: function() {
+                    if("" === this.channel_name) {
                         alert("채널 이름을 입력해 주십시오.");
                         return;
                     } else {
                         var params = new URLSearchParams();
-                        params.append("name",this.room_name);
+                        params.append("name",this.channel_name);
                         axios.post('/board/channel', params)
                         .then(
                             response => {
-                                alert(response.data.name+"채널 개설에 성공하였습니다.")
-                                this.room_name = '';
-                                this.findAllRoom();
+                                alert(response.data.channel_name+"채널 개설에 성공하였습니다.")
+                                this.channel_name = '';
+                                this.findAllChannel();
                             }
                         )
                         .catch( response => { alert("채널 개설에 실패하였습니다."); } );
                     }
                 },
-                enterRoom: function(roomId, roomName) {
-                    localStorage.setItem('wschat.roomId',roomId);
-                    localStorage.setItem('wschat.roomName',roomName);
-                    location.href="/board/channel/enter/"+roomId;
+                enterRoom: function(channelId, channelName) {
+                    localStorage.setItem('wsboard.channelId',channelId);
+                    localStorage.setItem('wsboard.channelName',channelName);
+                    location.href="/board/channel/enter/"+channelId;
                 }
             }
         });

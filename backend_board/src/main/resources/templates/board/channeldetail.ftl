@@ -18,25 +18,25 @@
     <div class="container" id="app" v-cloak>
         <div class="row">
             <div class="col-md-6">
-                <h4>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h4>
+                <h4>{{channelName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h4>
             </div>
             <div class="col-md-6 text-right">
                 <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
-                <a class="btn btn-info btn-sm" href="/chat/room">채팅방 나가기</a>
+                <a class="btn btn-info btn-sm" href="/board/channel">채널 나가기</a>
             </div>
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <label class="input-group-text">내용</label>
             </div>
-            <input type="text" class="form-control" v-model="message" v-on:keypress.enter="sendMessage('TALK')">
+            <input type="text" class="form-control" v-model="postit" v-on:keypress.enter="sendMessage('TALK')">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" @click="sendMessage('TALK')">보내기</button>
             </div>
         </div>
         <ul class="list-group">
-            <li class="list-group-item" v-for="message in messages">
-                {{message.sender}} - {{message.message}}</a>
+            <li class="list-group-item" v-for="postit in postitList">
+                {{postit.postitList}}</a>
             </li>
         </ul>
     </div>
@@ -53,38 +53,41 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                roomId: '',
-                roomName: '',
-                message: '',
-                messages: [],
+                channelId: '',
+                channelName: '',
+                sender: '',
+                postit: '',
+                postitList: [],
+                board:'',
+                boards: [],
                 token: '',
                 userCount: 0
             },
             created() {
-                this.roomId = localStorage.getItem('wschat.roomId');
-                this.roomName = localStorage.getItem('wschat.roomName');
+                this.channelId = localStorage.getItem('wsboard.channelId');
+                this.channelName = localStorage.getItem('wsboard.channelName');
                 var _this = this;
-                axios.get('/chat/user').then(response => {
+                axios.get('/board/user').then(response => {
                     _this.token = response.data.token;
                     ws.connect({"token":_this.token}, function(frame) {
-                        ws.subscribe("/sub/chat/room/"+_this.roomId, function(message) {
+                        ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
                             var recv = JSON.parse(message.body);
                             _this.recvMessage(recv);
                         });
                     }, function(error) {
                         alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
-                        location.href="/chat/room";
+                        location.href="/board/channel";
                     });
                 });
             },
             methods: {
                 sendMessage: function(type) {
-                    ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({type:type, roomId:this.roomId, message:this.message}));
-                    this.message = '';
+                    ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, postitList:this.postitList}));
+                    this.postit = '';
                 },
                 recvMessage: function(recv) {
                     this.userCount = recv.userCount;
-                    this.messages.unshift({"type":recv.type,"sender":recv.sender,"message":recv.message})
+                    this.postitList.unshift({"sender":recv.sender,"postitList":recv.postitList})
                 }
             }
         });

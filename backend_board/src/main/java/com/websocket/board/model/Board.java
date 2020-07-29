@@ -9,18 +9,22 @@ import java.util.List;
 public class Board {
 
     @Builder
-    public Board(){
-        this.userCount = 0;
+    public Board(String channelId, String channelName, String sender, List<Postit> postitList, long userCount) {
+        this.channelId = channelId;
+        this.channelName = channelName;
+        this.sender = sender;
+        this.postitList = postitList;
+        this.userCount = userCount;
         //this.numOfFixtures = 0;
         //this.overMaxMembers = false;
         //this.overMaxFixtures = false;
-        this.postitList = new ArrayList<>();
-        this.liveChat = false;
-        this.videoChat = false;
+        //this.liveChat = false;
+        //this.videoChat = false;
     }
 
     // 채널 자체 정보
     private String channelId;
+    private String channelName;
     private String sender;
 
     // 전달 모듈 관련 인자
@@ -40,7 +44,7 @@ public class Board {
     //private boolean overMaxFixtures; // 최대 부착물 수를 넘었는지
 
     // 라이브채팅, 화상채팅
-    private boolean liveChat; // 라이브챗 켜져있는지
-    private boolean videoChat; // 화상채팅 켜져있는지
+    //private boolean liveChat; // 라이브챗 켜져있는지
+    //private boolean videoChat; // 화상채팅 켜져있는지
 
 }
