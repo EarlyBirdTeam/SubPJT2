@@ -9,10 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Slf4j
 @RequiredArgsConstructor
 @Controller
+@CrossOrigin(origins = "http://localhost:8081")
 public class BoardController {
 
     private final JwtTokenProvider jwtTokenProvider;

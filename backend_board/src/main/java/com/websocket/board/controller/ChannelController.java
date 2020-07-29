@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/board")
+@CrossOrigin(origins = "http://localhost:8081")
 public class ChannelController {
 
     private final ChannelRepository channelRepository;
