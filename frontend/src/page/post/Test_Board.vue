@@ -33,6 +33,10 @@
             <v-btn icon color="orange" @click="createCanvas">
               <v-icon>mdi-palette</v-icon>
             </v-btn>
+
+            <v-btn icon color="red" @click="createPoll">
+              <v-icon>mdi-palette</v-icon>
+            </v-btn>
           </v-toolbar>
 
           <Postit @dblclick="focusAction"
@@ -64,6 +68,13 @@
             <Canvas />
           </div>
 
+          <Poll @mousedown.stop
+          @dblclick="changeTargetAction"
+          v-for="(a, idx) in counter.pollC"
+          :key="idx"
+          
+          />
+
         </div>
 
     </div>
@@ -77,6 +88,7 @@ import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
 import Postit from '../../components/common/Postit';
+import Poll from '../../components/common/Poll';
 
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 ref="contentTextArea" readonly="readonly"
@@ -94,6 +106,7 @@ export default {
     Scheduler,
     Canvas,
     Postit,
+    Poll,
   },
   created() { 
     console.log(document.querySelector('.moveable-control-box'));
@@ -118,6 +131,7 @@ export default {
       textC: [],
       schedulerC: [],
       canvasC: [],
+      pollC: [],
     },
   }),
   methods: {
@@ -172,6 +186,10 @@ export default {
       event.stopPropagation();
       this.counter.canvasC.push(0);
     },
+    createPoll() {
+      event.stopPropagation();
+      this.counter.pollC.push(0);
+    }
   },
   
 }
@@ -240,7 +258,7 @@ img {
 textarea {
   height: 100%;
   width: 100%;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 #board button {
@@ -259,5 +277,6 @@ textarea {
   position: relative;
   width: 400px;
 }
+
   
 </style>
