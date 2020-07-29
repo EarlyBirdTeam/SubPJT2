@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Router from 'vue-router'
 import VueCookie from 'vue-cookie'
-
 import constants from '../lib/constants'
 
 // 유저
@@ -13,12 +12,18 @@ import MyPage from '../page/user/MyPage.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
- 
+import Test from '../page/post/Test_Board.vue'
+import Create from '../page/post/Create_Community.vue'
+import Base from '../page/post/BaseBoard.vue'
+import Chat from '../page/post/Chat.vue'
+import Members from '../page/post/BoardMember.vue'
+
 Vue.use(Router) 
 Vue.use(Vuex)
 Vue.use(VueCookie)
  
 export default new Router({
+  mode: 'history',
   routes: [   
     // 로그인/가입
     { 
@@ -47,12 +52,43 @@ export default new Router({
       name: constants.URL_TYPE.POST.MAIN,
       component: List,
     },
+    { 
+      path: '/board',
+      name: constants.URL_TYPE.POST.BASE,
+      component: Base,
+      // beforeEnter: function (to,from,next){
+      //   alert("로그인 후 이용가능한 서비스 입니다.")
+      //   next('/');
+      // }
+    },
+    { 
+      path: '/board/test',
+      name: constants.URL_TYPE.POST.TEST_BOARD,
+      component: Test,
+   
+    },
+    { 
+      path: '/board/create',
+      name: constants.URL_TYPE.POST.CREATE,
+      component: Create,
+    },
+    { 
+      path: '/board/members',
+      name: constants.URL_TYPE.POST.MEMBERS,
+      component: Members,
+    },
+    { 
+      path: '/board/chat',
+      name: constants.URL_TYPE.POST.CHAT,
+      component: Chat,
+    },
 
     { 
       path: '/error',
       name: constants.ERROR.FRONT_ERROR,
       component: () => import('../page/etc/error.vue'),
     },
+
 
     // 그 외 페이지 (404, ERROR)
     {
