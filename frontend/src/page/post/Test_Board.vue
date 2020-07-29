@@ -1,6 +1,6 @@
 <template >
     <div class="" id="board" @click="test2">
-
+      <v-btn @click="connect">connect</v-btn>
 
 
         <div class="bodyBox" ref="whiteBoard">
@@ -35,11 +35,14 @@
             </v-btn>
           </v-toolbar>
 
-          <Postit @dblclick="focusAction"
+          {{ this.board }}
+
+          <!-- <Postit @dblclick="focusAction"
           @click="changeTargetAction"
           v-for="(a, idx) in counter.textC"
-          :key="idx"/>
-          <!-- <textarea @dblclick="focusAction"
+          :key="idx"/> -->
+
+          <textarea @dblclick="focusAction"
           @click="changeTargetAction"
           @click.right="deleteTargetAction(idx, $event)"
           v-for="(postit, idx) in board.postits"
@@ -50,7 +53,7 @@
           ref="contentTextArea"
           placeholder="It's Post it!"
           cols="30" rows="3">
-          </textarea> -->
+          </textarea>
 
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
@@ -90,8 +93,10 @@
 </template>
 
 
-
 <script>
+// import SockJs from 'sockjs';
+// import Stomp from 'webstomp-client';
+import axios from 'axios';
 
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
@@ -125,6 +130,10 @@ export default {
     window.oncontextmenu = function() {
       return false;
     };
+    const BASE_URL = "http://localhost:8080"
+    // websocket & stomp initialize
+    var sock = new SockJS(BASE_URL + "/ws-stomp");
+    var ws = Stomp.over(sock);
   },
   data: () => ({
     moveable: {
@@ -153,8 +162,49 @@ export default {
       postits: [ { "pId": 0, "title": "title", "content": "0" }, { "pId": 1, "title": "title", "content": "1" } ],
       polls: [],
     },
+    channelId: '',
+    channelName: '',
+    sender: '',
+    postit: '',
+    postitList: [],
+    board:'',
+    boards: [],
+    token: '',
+    userCount: 0
   }),
   methods: {
+    connect() {
+      // this.roomId = localStorage.getItem('wschat.roomId');
+      // this.roomName = localStorage.getItem('wschat.roomName');
+      this.channelId = "5a43b95b-5911-4fe3-b6ad-f0c53dca77c0"
+      this.channelName = "1234";
+      var _this = this;
+      const BASE_URL = "http://localhost:8080"
+      console.log("axios 이전")
+      axios.get("http://localhost:8080/board/channel").then(response => {
+        console.log("axios 요청 성공")
+          _this.token = response.data.token;
+          ws.connect({"token":_this.token}, function(frame) {
+              ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
+                  var recv = JSON.parse(message.body);
+                  _this.recvMessage(recv);
+              });
+          }, function(error) {
+              alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
+              location.href="/board/channel";
+          });
+      }).catch(err => {console.log(err)});
+      
+    },
+    sendMessage: function(type) {
+        ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, postitList:this.postitList}));
+        this.postit = '';
+    },
+    recvMessage: function(recv) {
+        this.userCount = recv.userCount;
+        this.postitList.unshift({"sender":recv.sender,"postitList":recv.postitList})
+    },
+
     handleDrag({ target, left, top }) {
       target.style.left = `${left}px`;
       target.style.top = `${top}px`;

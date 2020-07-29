@@ -18,6 +18,7 @@ import Board from '../page/post/Test_Board.vue'
 // test
 import Poll from '../components/common/Poll.vue'
 import Map from '../components/common/Map.vue'
+import Server from '../page/post/server.vue'
 
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -58,7 +59,11 @@ export default new Router({
       name: constants.URL_TYPE.POST.TEST_BOARD,
       component: Board,
     },
-
+    { 
+      path: '/server',
+      name: 'server',
+      component: Server,
+    },
     { 
       path: '/error',
       name: constants.ERROR.FRONT_ERROR,
