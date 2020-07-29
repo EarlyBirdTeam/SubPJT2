@@ -3,27 +3,23 @@
   <h2>멤버현황</h2>
   <v-card
     class="mx-auto"
-    max-width="500"
+    max-width="800"
   >
-
-
-   
-
     <v-container >
       <v-row dense>
         <v-col
           v-for="member in members"
-          :key="member.title"
+          :key="member.name"
   
         >
           <v-card>
             <v-img
-              :src="card.src"
+              :src="member.profile"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             >
-              <v-card-title v-text="card.title"></v-card-title>
+              <v-card-title v-text="member.name"></v-card-title>
             </v-img>
 
             <v-card-actions>
@@ -38,10 +34,22 @@
   </div>
 </template>
 
+
+
+
 <script>
   export default {
     data: () => ({
       members: [
+        { name: '김강현', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+        { name: '정용우', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+       { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+       { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+       { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+       { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+       { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+       { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
         ],
     }),
   //   methods: {

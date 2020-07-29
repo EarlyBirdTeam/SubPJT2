@@ -7,7 +7,7 @@
           
           v-bind="attrs"
           v-on="on"
-        style="width:5px"
+        style="width:0px padding:0"
         >
         
            <v-icon dark>mdi-plus</v-icon>

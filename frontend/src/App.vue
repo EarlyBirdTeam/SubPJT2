@@ -61,7 +61,7 @@ export default {
       },
       checkSide(url) {
         let array = [
-          "members","test_vue","base"
+          "members","test_vue","base","chat"
         ];
         console.log(url)
         let isSidebar = false;
@@ -86,12 +86,13 @@ export default {
 
 <style >
   #container{
-    width: 90vw;
-    float: right;
+    /* width: 90vw; */
+    float: center;
     /* border: solid gray 1px; */
     background-color: white;
     border-radius: 2%;
-    height: 90%;
+    height: 100%;
+    text-align: center;
     margin: 2.5vh 2vw;
   }
   #bg{

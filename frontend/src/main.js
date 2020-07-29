@@ -7,6 +7,12 @@ import cookies from 'vue-cookie';
 import constant from './lib/constants'
 import vuetify from './plugins/vuetify';
 
+import io from 'socket.io-client'; 
+
+const socket = io('http://localhost:3000');
+
+
+Vue.prototype.$socket = socket;
 Vue.prototype.$axios = axios;
 
 /* eslint-disable no-new */

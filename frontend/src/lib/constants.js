@@ -20,6 +20,7 @@ export default {
             TEST_BOARD: "test_vue",
             CREATE: "create",
             MEMBERS: "members",
+            CHAT: "chat",
         },
     },
     METHODS:{

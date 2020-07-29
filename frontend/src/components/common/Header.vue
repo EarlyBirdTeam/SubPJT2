@@ -2,7 +2,7 @@
     <div id="header" v-if="isHeader">
         <h1>
             <router-link class="white--text" v-bind:to="{name:constants.URL_TYPE.POST.MAIN}">
-                당신이 찾는 소모임 - 이거모임
+                이거모임?
             </router-link>
         </h1>
         <div class="right">
@@ -20,18 +20,16 @@
                 store 체크
             </button> -->
             <!-- <p>{{this.$store.state.email}}</p> -->
-
+            
             <template v-if="this.$store.state.email == ''">
                 <div class="headBox">
-                    <button @click="openModal">
-                        로그인
-                    </button>
+                    <LoginModal/>
                 </div>
             </template>
 
             <template v-if="this.$store.state.email != ''">
                 <div class="headBox">
-                    <CreateModal/>
+                    <CreateModal style="width:10px"/>
                     <router-link v-bind:to="{name:constants.URL_TYPE.USER.MYPAGE}" class="btn--text">
                         {{userData}}
                     </router-link> 
@@ -46,7 +44,7 @@
         </div>  
         
             
-            <loginModal @close="closeModal" v-if="modal">
+            <!-- <loginModal @close="closeModal" v-if="modal">
                 
                 
                 <div class="input-wrap">
@@ -69,20 +67,20 @@
                                 
                 </template>
 
-            </loginModal>
+            </loginModal> -->
         
     </div>
 </template>   
 
 <script> 
-    import loginModal from '../../page/user/Login.vue'
+    import LoginModal from '../LoginModal'
     import constants from '../../lib/constants'
     import cookies from 'vue-cookie'
     import CreateModal from '../CreateModal'
     export default {
         name: 'Header',
         components: { 
-            loginModal,
+            LoginModal,
             CreateModal
     
             
@@ -148,31 +146,31 @@
             toggle(){
                 this.t = !this.t;
             },
-             testMethod(email, password){
-                console.log(email,password);
+            //  testMethod(email, password){
+            //     console.log(email,password);
 
-                var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-                if(exptext.test(email)==false){
-                    //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우            
-                    alert("이메일형식이 올바르지 않습니다.");
+            //     var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+            //     if(exptext.test(email)==false){
+            //         //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우            
+            //         alert("이메일형식이 올바르지 않습니다.");
                   
-                }
-                else if(password=='')
-                {
-                    alert("비밀번호를 입력해주세요");
-                }
-                else {
+            //     }
+            //     else if(password=='')
+            //     {
+            //         alert("비밀번호를 입력해주세요");
+            //     }
+            //     else {
 
-                    const result = this.$store.dispatch(constants.METHODS.LOGIN_USER, {email, password});
-                    console.log(this.userData);this.modal = !this.modal;
-                    this.$router.push('/board')
+            //         const result = this.$store.dispatch(constants.METHODS.LOGIN_USER, {email, password});
+            //         console.log(this.userData);this.modal = !this.modal;
+            //         this.$router.push('/board')
                   
-                };
+            //     };
 
                     
-                // this.email = '';
-                // this.password = '';
-            },
+            //     // this.email = '';
+            //     // this.password = '';
+            // },
             
         },
         data: function() {

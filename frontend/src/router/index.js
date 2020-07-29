@@ -15,7 +15,7 @@ import List from '../page/post/List.vue'
 import Test from '../page/post/Test_Board.vue'
 import Create from '../page/post/Create_Community.vue'
 import Base from '../page/post/BaseBoard.vue'
-
+import Chat from '../page/post/Chat.vue'
 import Members from '../page/post/BoardMember.vue'
 
 Vue.use(Router) 
@@ -55,12 +55,17 @@ export default new Router({
     { 
       path: '/board',
       name: constants.URL_TYPE.POST.BASE,
-      component: Base
+      component: Base,
+      // beforeEnter: function (to,from,next){
+      //   alert("로그인 후 이용가능한 서비스 입니다.")
+      //   next('/');
+      // }
     },
     { 
       path: '/board/test',
       name: constants.URL_TYPE.POST.TEST_BOARD,
       component: Test,
+   
     },
     { 
       path: '/board/create',
@@ -71,6 +76,11 @@ export default new Router({
       path: '/board/members',
       name: constants.URL_TYPE.POST.MEMBERS,
       component: Members,
+    },
+    { 
+      path: '/board/chat',
+      name: constants.URL_TYPE.POST.CHAT,
+      component: Chat,
     },
 
     { 

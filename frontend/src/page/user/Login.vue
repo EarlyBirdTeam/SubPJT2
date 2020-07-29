@@ -1,30 +1,35 @@
 <template>
-    <transition name="modal">
-        <div class="modal-overlay" @mousedown="$emit('close')">
-            <div class="user" id="login">
-                <div class="wrapC table" @mousedown.stop>
-                    <div class="middle">
-                        <h1>SS_log</h1>
-                        <slot></slot>
-
-                        <slot name="footer"></slot>
-
-                        <div class="add-option">
-                            <div class="wrap">
-                                <p>아직 회원이 아니신가요?</p>
-                                <router-link v-bind:to="{name:constants.URL_TYPE.USER.JOIN}" class="btn--text" >
-                                    회원가입
-                                </router-link>
-                            </div>
-
-                        </div>
-                    </div>
-                    
+    <div class="user custom" id="login">
+        <div class="wrapC table">
+            <div class="middle">
+                <h1>SS_log</h1>
+                <div class="input-wrap">
+                    <input v-model="email"
+                        id="email" 
+                        placeholder="이메일을 입력해주세요"
+                        type="text"/>
                 </div>
-
+                <div class="input-wrap">
+                    <input v-model="password" type="password"
+                        id="password"
+                        placeholder="영문, 숫자 혼용 8자 이상"/>
+                </div>
+                <button @click="testMethod(email, password)" class="btn btn--back btn--login">
+                    로그인 하기
+                </button>
+                <div class="add-option">
+                    <div class="wrap">
+                        <p>아직 회원이 아니신가요?</p>
+                        <router-link v-bind:to="{name:constants.URL_TYPE.USER.JOIN}" class="btn--text">
+                            회원가입
+                        </router-link>
+                    </div>
+                </div>
             </div>
+            
         </div>
-    </transition>
+
+    </div>
 </template>
 
 <script>
@@ -43,7 +48,31 @@
         watch: {
         },
         methods: {
-            
+            testMethod(email, password){
+                console.log(email,password);
+
+                var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+                if(exptext.test(email)==false){
+                    //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우            
+                    alert("이메일형식이 올바르지 않습니다.");
+                  
+                }
+                else if(password=='')
+                {
+                    alert("비밀번호를 입력해주세요");
+                }
+                else {
+
+                    const result = this.$store.dispatch(constants.METHODS.LOGIN_USER, {email, password});
+                    console.log(this.userData);this.modal = !this.modal;
+                    this.$router.push('/board/test')
+                  
+                };
+
+                    
+                // this.email = '';
+                // this.password = '';
+            },
 
         },
         data: () => {
@@ -62,42 +91,29 @@
 </script>
 
 
-<style lang="scss" scoped>
+// <style lang="scss" scoped>
 
 
-.modal-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 30;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
+
+// .modal-enter-active, .modal-leave-active {
+//   transition: opacity 0.4s;
+// }
+// .modal-window {
+//   transition: opacity 0.4s, transform 0.4s;
+// }
 
 
-.modal-enter-active, .modal-leave-active {
-  transition: opacity 0.4s;
-}
-.modal-window {
-  transition: opacity 0.4s, transform 0.4s;
-}
+// .modal-leave-active {
+//   transition: opacity 0.6s ease 0.4s;
+// }
 
+// .modal-enter, .modal-leave-to {
+//   opacity: 0;
 
-.modal-leave-active {
-  transition: opacity 0.6s ease 0.4s;
-}
+//   .modal-window {
+//     opacity: 0;
+//     transform: translateY(-20px);
+//   }
+// }
 
-.modal-enter, .modal-leave-to {
-  opacity: 0;
-
-  .modal-window {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-</style>
+// </style>
