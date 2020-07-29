@@ -31,10 +31,16 @@
                 <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
             </div>
 
-            <!-- 화상캠방 -->
+            <!-- 화상캠 방 -->
             <br>
             <div class="input-group-append">
                 <button class="btn btn-outline-success" type="buttosn" @click="enterCamPage">화상채팅 방</button>
+            </div>
+
+            <!-- 보드작업 방 -->
+            <br>
+            <div class="input-group-append">
+                <button class="btn btn-outline-danger" type="buttosn" @click="enterBoard">보드작업</button>
             </div>
         </div>
         <ul class="list-group">
@@ -91,7 +97,14 @@
 
                 enterCamPage: function(){
                     //location.host="8000";
-                    location.href="http://localhost:8000/index.html";
+                    //location.href="http://localhost:8000/index.html";
+                    location.href="http://appr.tc";
+                },
+
+                enterBoard: function(){
+                    //location.host="8000";
+                    //location.href="http://localhost:8000/index.html";
+                    location.href="http://localhost:3000";
                 }
             }
         });
