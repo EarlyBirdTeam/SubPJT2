@@ -1,13 +1,9 @@
 spring:
-  profiles:
-    active: local
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: false
-    add-properties: false
-  freemarker:
-    cache: false
-  jwt:
-    secret: govlepel@$&
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: jwbae0820@gmail.com
+    password: wodnjs0315!
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
