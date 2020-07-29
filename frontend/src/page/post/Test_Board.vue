@@ -29,7 +29,6 @@
             <v-btn icon color="orange" @click="createCanvas">
               <v-icon>mdi-palette</v-icon>
             </v-btn>
-<<<<<<< frontend/src/page/post/Test_Board.vue
 
             <v-btn icon color="red" @click="createPoll">
               <v-icon>mdi-palette</v-icon>
@@ -41,19 +40,6 @@
           v-for="(a, idx) in counter.textC"
           :key="idx"/>
           <!-- <textarea @dblclick="focusAction"
-=======
-            <v-btn icon color="orange" @click="createMap">
-              <v-icon>mdi-map</v-icon>
-            </v-btn>
-          </v-toolbar>
-
-          <div>
-            Board - {{ this.board }}<br>
-          </div>
-
-
-          <textarea @dblclick="focusAction"
->>>>>>> frontend/src/page/post/Test_Board.vue
           @click="changeTargetAction"
           @click.right="deleteTargetAction(idx, $event)"
           v-for="(postit, idx) in board.postits"
@@ -82,7 +68,6 @@
             <Canvas />
           </div>
 
-<<<<<<< frontend/src/page/post/Test_Board.vue
           <Poll @mousedown.stop
           @dblclick="changeTargetAction"
           v-for="(a, idx) in counter.pollC"
@@ -90,7 +75,6 @@
           
           />
 
-=======
           <Map 
           @dblclick="focusAction"
           @click="changeTargetAction"
@@ -100,7 +84,6 @@
           class="moveable2" 
           />
           
->>>>>>> frontend/src/page/post/Test_Board.vue
         </div>
         
     </div>
@@ -113,12 +96,9 @@
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
-<<<<<<< frontend/src/page/post/Test_Board.vue
 import Postit from '../../components/common/Postit';
 import Poll from '../../components/common/Poll';
-=======
 import Map from '../../components/common/Map';
->>>>>>> frontend/src/page/post/Test_Board.vue
 
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 ref="contentTextArea" readonly="readonly"
@@ -135,12 +115,9 @@ export default {
     Moveable,
     Scheduler,
     Canvas,
-<<<<<<< frontend/src/page/post/Test_Board.vue
     Postit,
     Poll,
-=======
     Map,
->>>>>>> frontend/src/page/post/Test_Board.vue
   },
   created() { 
     console.log(document.querySelector('.moveable-control-box'));
@@ -168,16 +145,13 @@ export default {
       textC: [],
       schedulerC: [],
       canvasC: [],
-<<<<<<< frontend/src/page/post/Test_Board.vue
-      pollC: [],
-=======
       mapC: [],
+      pollC: [],
     },
     board: {
       idCounter: 2, 
       postits: [ { "pId": 0, "title": "title", "content": "0" }, { "pId": 1, "title": "title", "content": "1" } ],
       polls: [],
->>>>>>> frontend/src/page/post/Test_Board.vue
     },
   }),
   methods: {
@@ -244,11 +218,10 @@ export default {
       event.stopPropagation();
       this.counter.canvasC.push(0);
     },
-<<<<<<< frontend/src/page/post/Test_Board.vue
     createPoll() {
       event.stopPropagation();
       this.counter.pollC.push(0);
-=======
+    },
     createMap() {
       event.stopPropagation();
       this.counter.mapC.push(0);
@@ -265,7 +238,6 @@ export default {
         
       }
       
->>>>>>> frontend/src/page/post/Test_Board.vue
     }
   },
   
