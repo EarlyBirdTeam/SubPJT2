@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="505a1721-b426-4772-9701-7f1c3580ab6a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/AuthAppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/advice/AuthControllerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/annotation/CurrentUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/cache/LoggedOutJwtTokenCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/config/AuditConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/config/MailConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/config/WebSecurityDevConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/OnGenerateResetLinkEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/OnRegenerateEmailVerificationEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/OnUserAccountChangeEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/OnUserLogoutSuccessEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/OnUserRegistrationCompleteEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/listener/OnGenerateResetLinkEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/listener/OnRegenerateEmailVerificationListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/listener/OnUserAccountChangeListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/listener/OnUserLogoutSuccessEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/event/listener/OnUserRegistrationCompleteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/AppException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/BadRequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/InvalidTokenRequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/MailSendException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/PasswordResetException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/PasswordResetLinkException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/ResourceAlreadyInUseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/ResourceNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/TokenRefreshException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/UpdatePasswordException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/UserLoginException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/UserLogoutException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/exception/UserRegistrationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/CustomUserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/DeviceType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/Mail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/PasswordResetToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/RoleName.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/TokenStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/UserDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/audit/DateAudit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/ApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/DeviceInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/JwtAuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/LogOutRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/PasswordResetLinkRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/PasswordResetRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/RegistrationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/TokenRefreshRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/payload/UpdatePasswordRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/token/EmailVerificationToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/token/JwtAuthenticationToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/model/token/RefreshToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/repository/EmailVerificationTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/repository/PasswordResetTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/repository/RefreshTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/repository/UserDeviceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/security/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/security/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/security/JwtTokenProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/security/JwtTokenValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/EmailVerificationTokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/MailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/PasswordResetTokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/RefreshTokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/RoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/UserDeviceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/util/Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/validation/annotation/MatchPassword.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/validation/annotation/NullOrNotBlank.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/validation/validator/MatchPasswordValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accolite/pru/health/AuthApp/validation/validator/NullOrNotBlankValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/account-activity-change.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/email-verification.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reset-link.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/accolite/pru/health/AuthApp/cache/LoggedOutJwtTokenCacheTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/accolite/pru/health/AuthApp/security/JwtTokenProviderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/accolite/pru/health/AuthApp/security/JwtTokenValidatorTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1fL3GKgeoVyeb4RxpQRUCtAkWtZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend_auth" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\multicampus\Desktop\auth\s03p12a510\backend\src\main\java\com\accolite\pru\health\AuthApp\config" />
+      <recent name="C:\Users\multicampus\Desktop\auth\s03p12a510\backend\src\main\java" />
+      <recent name="C:\Users\multicampus\Desktop\auth\s03p12a510\backend" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.AuthAppApplication">
+    <configuration name="JwtTokenProviderTest.testGetExpiryDuration" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.accolite.pru.health.AuthApp.security.JwtTokenProviderTest.testGetExpiryDuration&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthAppApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="chat.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ssafy.earlybird.jwtauth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ssafy.earlybird.jwtauth.AuthAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="chat.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.accolite.pru.health.AuthApp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.accolite.pru.health.AuthApp.AuthAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebsocketchatApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="chat.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.websocket.chat.WebsocketchatApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.AuthAppApplication" />
+        <item itemvalue="Spring Boot.AuthAppApplication (1)" />
+        <item itemvalue="Gradle.JwtTokenProviderTest.testGetExpiryDuration" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="505a1721-b426-4772-9701-7f1c3580ab6a" name="Default Changelist" comment="" />
+      <created>1595983448640</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595983448640</updated>
+      <workItem from="1595983452234" duration="1178000" />
+      <workItem from="1595984770911" duration="37000" />
+      <workItem from="1595984875066" duration="5910000" />
+      <workItem from="1596003386146" duration="11716000" />
+      <workItem from="1596084585148" duration="7219000" />
+      <workItem from="1596103410472" duration="4187000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="338" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1595993202921">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="338" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1595993202921" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596116122442">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1596116122442" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596007878364">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1596007878364" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1596117545618">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596117545618" />
+    <state width="1478" height="113" key="GridCell.Tab.0.bottom" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.0.center" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.0.left" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.0.right" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.1.bottom" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.1.center" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.1.left" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="113" key="GridCell.Tab.1.right" timestamp="1596117546713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="113" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1596117546713" />
+    <state width="1478" height="258" key="GridCell.Tab.2.bottom" timestamp="1595993883785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595993883785" />
+    <state width="1478" height="258" key="GridCell.Tab.2.center" timestamp="1595993883785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1595993883785" />
+    <state width="1478" height="258" key="GridCell.Tab.2.left" timestamp="1595993883785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1595993883785" />
+    <state width="1478" height="258" key="GridCell.Tab.2.right" timestamp="1595993883785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1595993883785" />
+    <state x="488" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595985912217">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="488" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1595985912217" />
+  </component>
+</project>

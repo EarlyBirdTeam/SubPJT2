@@ -55,13 +55,9 @@ public class User extends DateAudit {
     @NotNull(message = "Password cannot be null")
     private String password;
 
-    @Column(name = "FIRST_NAME")
+    @Column(name = "NICKNAME")
     @NullOrNotBlank(message = "First name can not be blank")
-    private String firstName;
-
-    @Column(name = "LAST_NAME")
-    @NullOrNotBlank(message = "Last name can not be blank")
-    private String lastName;
+    private String nickname;
 
     @Column(name = "IS_ACTIVE", nullable = false)
     private Boolean active;
@@ -83,8 +79,8 @@ public class User extends DateAudit {
         id = user.getId();
         username = user.getUsername();
         password = user.getPassword();
-        firstName = user.getFirstName();
-        lastName = user.getLastName();
+        nickname = user.getNickname();
+//        lastName = user.getLastName();
         email = user.getEmail();
         active = user.getActive();
         roles = user.getRoles();
@@ -133,21 +129,21 @@ public class User extends DateAudit {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setNickname(String firstName) {
+        this.nickname = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    public String getLastName() {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 
     public String getEmail() {
         return email;
@@ -184,7 +180,7 @@ public class User extends DateAudit {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", email='" + email + '\'' + ", username='" + username + '\'' + ", password='"
-                + password + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", active="
+                + password + '\'' + ", firstName='" + nickname + '\'' + ", active="
                 + active + ", roles=" + roles + ", isEmailVerified=" + isEmailVerified + '}';
     }
 }
