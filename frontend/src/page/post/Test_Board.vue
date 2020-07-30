@@ -25,19 +25,19 @@
             <v-btn icon color="orange" @click="createText">
               <v-icon>mdi-message</v-icon>
             </v-btn>
-
-            
             <v-btn icon color="orange" @click="createScheduler">
               <v-icon>mdi-book</v-icon>
             </v-btn>
-
-            
             <v-btn icon color="orange" @click="createCanvas">
               <v-icon>mdi-palette</v-icon>
             </v-btn>
 
             <v-btn icon color="red" @click="createPoll">
               <v-icon>mdi-palette</v-icon>
+            </v-btn>
+
+            <v-btn icon color="orange" @click="createMap">
+              <v-icon>mdi-map</v-icon>
             </v-btn>
           </v-toolbar>
 
@@ -53,14 +53,31 @@
           v-on:setTitle="changePITitle"
           v-on:setContent="changePIContent"/>
             
+
+
+          <textarea @dblclick="focusAction"
+          @click="changeTargetAction"
+          @click.right="deleteTargetAction(idx, $event)"
+          v-for="(postit, idx) in board.postits"
+          class="moveable"
+          :key="idx"
+          :id="idx"
+          v-model="postit.content"
+          ref="contentTextArea"
+          placeholder="It's Post it!"
+          cols="30" rows="3">
+          </textarea>
+
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
+          @click.right="deleteTargetAction"
           v-for="(a, idx) in counter.schedulerC"
           :key="idx"
           class="moveable2" />
 
           <div @dblclick="focusAction"
           @click="changeTargetAction"
+          @click.right="deleteTargetAction"
           v-for="(a, idx) in counter.canvasC"
           :key="idx"
           class="moveable3">
@@ -74,8 +91,17 @@
                 display: inline-block"
           />
 
+          <Map 
+          @dblclick="focusAction"
+          @click="changeTargetAction"
+          @click.right="deleteTargetAction"
+          v-for="(a, idx) in counter.mapC"
+          :key="idx"
+          class="moveable2" 
+          />
+          
         </div>
-
+        
     </div>
 </template>
 
@@ -88,6 +114,7 @@ import Canvas from "../../components/common/Canvas";
 import Moveable from 'vue-moveable';
 import Postit from '../../components/common/Postit';
 import Poll from '../../components/common/Poll';
+import Map from '../../components/common/Map';
 
 const pI = `<div  class="moveable" @dblclick="dblclickEv"   @click="clickEv"
                 ref="contentTextArea" readonly="readonly"
@@ -106,8 +133,14 @@ export default {
     Canvas,
     Postit,
     Poll,
+    Map,
   },
   created() { 
+    console.log(document.querySelector('.moveable-control-box'));
+    // 우클릭 기본이벤트 차단
+    window.oncontextmenu = function() {
+      return false;
+    };
   },
   data: () => ({
     moveable: {
@@ -129,6 +162,7 @@ export default {
       schedulerC: [],
       canvasC: [],
       pollC: [],
+      mapC: [],
     },
     board: {
       idCounter: 0, 
@@ -198,6 +232,17 @@ export default {
       // target.blur();
       // this.$refs.moveable.moveable.target = target;
     },
+    deleteTargetAction(idx ,{target}){
+      console.log(idx);
+      console.log(target);
+      if(confirm("요소를 삭제하시겠습니까?") === true) {
+        if(target.getAttribute("class") === "moveable") {
+          this.board.postits.splice(idx, 1);
+        }
+        // target이 뒤에 있는 두 개가 삭제되는 문제가 있다. 
+        target.remove();
+      }
+    },
     test(){
       document.querySelector('.moveable-control-box').style.display = 'block';
     },
@@ -243,6 +288,23 @@ export default {
     createPoll() {
       event.stopPropagation();
       this.counter.pollC.push(this.counter.pollC.length);
+    },
+    createMap() {
+      event.stopPropagation();
+      this.counter.mapC.push(0);
+    },
+    sendData() {
+      // 서버로 보낼 데이터 구성 (testing)
+      const API_URL = ""
+      var data = { 
+        channel: { 
+          channelId: 0, 
+          name:"sample-channel", 
+          }, 
+        board: this.board
+        
+      }
+      
     }
   },
   
