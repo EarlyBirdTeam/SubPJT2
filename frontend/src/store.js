@@ -28,11 +28,6 @@ export const store = new Vuex.Store({
         nickname:'',
         errorcode:'',
         modal:false,
-        board:{
-            idCounter: 0, 
-            postits: [],
-            polls: [],
-        }
     },
     actions:{
         [constants.METHODS.DELETE_USER] : (store, payload) =>{

@@ -1,28 +1,43 @@
 <template>
   <div class="container" id="app" v-cloak>
+    <!-- {{ postitList }}   {{ idCount}} -->
         <div class="row">
             <div class="col-md-6">
                 <h4>{{channelName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h4>
-            </div>
-            <div class="col-md-6 text-right">
-                <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
-                <a class="btn btn-info btn-sm" href="/board/channel">채널 나가기</a>
+        <v-btn @click="sendMessage()">보내기</v-btn><br>
             </div>
         </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <label class="input-group-text">내용</label>
-            </div>
-            <input type="text" class="form-control" v-model="postit" v-on:keypress.enter="sendMessage('TALK')">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button" @click="sendMessage('TALK')">보내기</button>
-            </div>
+        <v-toolbar class="toolBox">
+            <v-btn icon color="orange" @click="createText">
+              <v-icon>mdi-message</v-icon>
+            </v-btn>
+        </v-toolbar> 
+        
+        <div class="bodyBox " ref="whiteBoard" @dblclick="focusAction"
+          @click="changeTargetAction"
+          @click.right="test4">
+
+          <Moveable
+          ref="moveable"
+          class="moveable"
+          v-bind="moveable"
+          @drag="handleDrag"
+          @dragEnd="handleDragEnd"
+          @resize="handleResize"
+          @scale="handleScale"
+          @rotate="handleRotate"
+          @warp="handleWarp"
+          style="display: none;"
+          >
+          </Moveable> 
+
+          <div v-for="(pi, idx) in this.postitList" :key="idx">
+            <!-- <Postit :id="pi.id" :postit="pi" style="position: relative; display: inline-block"/> -->
+            <Postit :id="pi.id" :postit="pi" 
+            :style="{left: pi.left, top: pi.top}"/>
+          </div>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item" v-for="(postit, idx) in postitList" :key="idx">
-                {{postit.postitList}}
-            </li>
-        </ul>
+        
     </div>
 </template>
 
@@ -31,6 +46,8 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stomp-websocket';
 import axios from 'axios';
 import http from '../../http-common.js';
+import Postit from '../../components/common/Postit'
+import Moveable from 'vue-moveable';
 
 export default {
   data () {
@@ -39,12 +56,35 @@ export default {
       channelId: '',
       channelName: '',
       sender: '',
-      postit: '',
-      postitList: [],
+      postit: {title: 'title!!!!', contents: ''},
+      // postitList: [],
+      dummyTitle: '',
+      dummyContents: '',
+      postitList: [{
+        id: 0,
+        left: '0px',
+        top: '0px',
+        title: 'sample',
+        contents: 'sample',
+      }],
       board:'',
       boards: [],
       token: '',
-      userCount: 0
+      userCount: 0,
+      moveable: {
+        target: '',
+        draggable: true,
+        throttleDrag: 1,
+        resizable: false,
+        throttleResize: 1,
+        keepRatio: false,
+        scalable: true,
+        throttleScale: 0,
+        rotatable: true,
+        throttleRotate: 0,
+        origin: false,
+      },
+      idCount: 1,
     }
   },
   created() {
@@ -69,22 +109,122 @@ export default {
               });
           }, function(error) {
               alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
-              location.href="/board/channel";
+              location.href="/";
           });
       });
+      // this.initSend();
+    },
+    initSend: function(type) {
+      // 접속시 처음 값을 받아오도록 하기 --> 실행 안됨 ㅠ
+      this.ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId}));
     },
     sendMessage: function(type) {
-        this.ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, postitList:this.postitList}));
-        this.postit = '';
+      console.log("send@@@@@@ ");
+      console.log(this.postitList);
+      // var tempPostitList = this.postitList.unshift({title: this.dummyTitle, contents: this.dummyContents});
+      this.ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, idCount:this.idCount, postitList:this.postitList}));
+      this.dummy = '';
     },
     recvMessage: function(recv) {
-        this.userCount = recv.userCount;
-        this.postitList.unshift({"sender":recv.sender,"postitList":recv.postitList})
-    }
+      this.userCount   = recv.userCount;
+      this.idCount = recv.idCount;
+      // this.postitList.unshift({"sender":recv.sender,"postitList":recv.postitList})
+      this.postitList = recv.postitList;
+    },
+    createText(event) {
+      event.stopPropagation();
+      const idc = this.idCount++;
+      this.postitList.unshift({
+        id: idc,
+        left: '0px',
+        top: '0px',
+        title: '', 
+        contents: ''})
+      this.sendMessage();
+    },    
+    handleDrag({ target, left, top }) {
+      target.style.left = `${left}px`;
+      target.style.top = `${top}px`;
+      this.postitList.map(postit => {
+        if(postit.id == target.id) {
+          postit.left = `${left}px`,
+          postit.top = `${top}px`
+        }
+        return {
+          ...postit,
+        }
+      })
+    },
+    handleDragEnd(){
+      this.sendMessage();
+    },
+    handleResize({ target, width, height, delta }) {
+      console.log("onResize", width, height, delta);
+      delta[0] && (target.style.width = `${width}px`);
+      delta[1] && (target.style.height = `${height}px`);
+    },
+    handleScale({ target, transform, scale }) {
+      target.style.transform = transform;
+    },
+    handleRotate({ target, dist, transform }) {
+      target.style.transform = transform;
+    },
+    handleWarp({ target, transform }) {
+      target.style.transform = transform;
+    },  
+    focusAction({ target, transform }){
+        target.focus();
+    },
+    changeTargetAction({target}){
+      this.test();
+      if(target.getAttribute('class') != null){
+        var clas = target.getAttribute('class').split(' ');
+      
+        for(var cla in clas){
+          if(clas[cla] == 'MoveableBox'){
+            event.stopPropagation();
+            target.blur();
+            this.$refs.moveable.moveable.target = target;
+          }
+        }
+      }
+    },
+    test(){
+      document.querySelector('.moveable-control-box').style.display = 'block';
+    },
+    test2(){
+      console.log("click body!");
+      document.querySelector('.moveable-control-box').style.display = 'none';
+    },
+    test3({target}){
+      console.log("click target!");
+      
+      console.log(target.style.left);
+    },
+    test4({target}){
+      target.style.left = "100px";
+
+    },
+
+  },
+  components: {
+    Postit,
+    Moveable,
   }
 }
 </script>
 
 <style>
-
+.moveable {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  font-size: 40px;
+  margin: 0 auto;
+  font-weight: 100;
+  letter-spacing: 1px;
+  background-color: yellow;
+}
 </style>
