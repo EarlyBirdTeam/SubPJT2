@@ -3,17 +3,18 @@
     <v-main id="bg">
       <Header :isHeader="isHeader"/>
       
-      <div v-if="isSidebar"><Sidebar/></div>
+      <div v-if="isBoard"><Baseboard/></div>
 
-      <router-view id="container"/>
+      <router-view id="container"></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import './assets/css/style.scss' 
+// import './assets/css/style.scss' 
 import Header from './components/common/Header.vue'
-import Sidebar from './components/common/Sidebar'
+// import Sidebar from './components/common/Sidebar'
+import Baseboard from './page/post/BaseBoard'
 import CreateModal from './components/CreateModal'
 import constants from './lib/constants' 
 import axios from 'axios'
@@ -23,20 +24,21 @@ export default {
   components: { 
     Header,
     CreateModal,
-    Sidebar
+    Baseboard
+    // Sidebar
 
   },
   created() {
       let url = this.$route.name;
 
       this.checkUrl(url);
-      this.checkSide(url);
+      this.checkBoard(url);
   },
   watch: {
       $route (to){
 
           this.checkUrl(to.name);
-          this.checkSide(to.name)
+          this.checkBoard(to.name)
       }
   },
   methods : {
@@ -59,25 +61,25 @@ export default {
     
 
       },
-      checkSide(url) {
+      checkBoard(url) {
         let array = [
           "members","test_vue","base","chat"
         ];
         console.log(url)
-        let isSidebar = false;
+        let isBoard = false;
         array.map(path => {
               if (url === path)
               
-                  isSidebar = true;
+                  isBoard = true;
           })
-        this.isSidebar = isSidebar;
+        this.isBoard = isBoard;
 
       }
   },
   data: function () {
         return {
             isHeader: true,
-            isSidebar: false,
+            isBoard: false,
             constants,
         } 
     }
@@ -91,11 +93,13 @@ export default {
     /* border: solid gray 1px; */
     background-color: white;
     border-radius: 2%;
-    height: 100%;
+
     text-align: center;
     margin: 2.5vh 2vw;
+    
   }
   #bg{
-    background-color: rgba(180, 179, 179, 0.26);
+    background-color: rgb(255, 235, 221);
+
   }
 </style>

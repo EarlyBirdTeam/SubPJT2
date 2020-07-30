@@ -26,11 +26,11 @@ export default new Router({
   mode: 'history',
   routes: [   
     // 로그인/가입
-    { 
-      path: '/user/login',
-      name: constants.URL_TYPE.USER.LOGIN,
-      component: Login
-    },
+    // { 
+    //   path: '/user/login',
+    //   name: constants.URL_TYPE.USER.LOGIN,
+    //   component: Login
+    // },
     {
       path: '/user/join',
       name: constants.URL_TYPE.USER.JOIN,
@@ -52,15 +52,15 @@ export default new Router({
       name: constants.URL_TYPE.POST.MAIN,
       component: List,
     },
-    { 
-      path: '/board',
-      name: constants.URL_TYPE.POST.BASE,
-      component: Base,
-      // beforeEnter: function (to,from,next){
-      //   alert("로그인 후 이용가능한 서비스 입니다.")
-      //   next('/');
-      // }
-    },
+    // { 
+    //   path: '/board',
+    //   name: constants.URL_TYPE.POST.BASE,
+    //   component: Base,
+    //   // beforeEnter: function (to,from,next){
+    //   //   alert("로그인 후 이용가능한 서비스 입니다.")
+    //   //   next('/');
+    //   // }
+    // },
     { 
       path: '/board/test',
       name: constants.URL_TYPE.POST.TEST_BOARD,

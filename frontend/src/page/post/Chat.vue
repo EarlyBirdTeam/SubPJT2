@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div style="margin-top:45px ">
     <h3>착한 말 고운말 ^^</h3>
     <form class="form-inline">
       <div class="form-group">
@@ -12,16 +12,25 @@
   </div>
 </template>
 <script>
+import constants from '../../lib/constants'
 export default { 
     name: 'Chat', 
     created() { 
+        // this.$store.dispatch(constants.METHODS.GET_USER);
+        console.log('하이')
         // this.$socket.on('chat', (data)=> { 
         //     this.textarea += data.message + "\n" 
         //     })
-
-        this.$socket.emit("login", {    
-            name: "Dongryul",
-            userid: "ungmo2@gmail.com"
+        // this.$router.push('chat')
+        this.$socket.emit('forceDisconnect');
+        
+        
+        },
+        mounted() {
+            
+this.$socket.emit("login", {    
+            name: this.$store.state.email,
+            userid: this.$store.state.email
         });
 
         this.$socket.on("login", (data)=> {
@@ -31,10 +40,12 @@ export default {
         this.$socket.on("s2c chat", (data)=> {
             $("#chatLogs").append("<div>" + data.from.name + " : " + data.msg + "</div>");
         }); 
-        }, 
+        },
+         
     data() { 
         return { 
-            textarea: "", message: '', 
+            textarea: "", message: '',
+            islogin:false, 
             } 
         }, 
     methods: { 

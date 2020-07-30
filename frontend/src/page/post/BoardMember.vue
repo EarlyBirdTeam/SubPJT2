@@ -1,9 +1,9 @@
 <template>
-<div>
+<div style="margin-top:45px">
   <h2>멤버현황</h2>
   <v-card
     class="mx-auto"
-    max-width="800"
+    
   >
     <v-container >
       <v-row dense>
@@ -41,15 +41,12 @@
   export default {
     data: () => ({
       members: [
-        { name: '김강현', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '정용우', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
-        { name: '배민규', profile: 'https://image.flaticon.com/icons/svg/992/992675.svg', flex: 1 },
+        { name: '김강현', profile: 'https://randomuser.me/api/portraits/men/81.jpg', flex: 1 },
+        { name: '정용우', profile: 'https://randomuser.me/api/portraits/men/82.jpg', flex: 1 },
+        { name: '김동률', profile: 'https://randomuser.me/api/portraits/men/83.jpg', flex: 1 },
+        { name: '최문경', profile: 'https://randomuser.me/api/portraits/women/82.jpg', flex: 1 },
+        { name: '배재원', profile: 'https://randomuser.me/api/portraits/men/73.jpg', flex: 1 },
+        { name: '배민규', profile: 'https://randomuser.me/api/portraits/men/45.jpg', flex: 1 },
         ],
     }),
   //   methods: {

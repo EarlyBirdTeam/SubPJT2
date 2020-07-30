@@ -1,24 +1,25 @@
 
 <template>
-  <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="290">
+    <v-dialog v-model="dialog" width="350px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="white"
-          dark
+        
+        <button
+          
+          style="float:right"
           v-bind="attrs"
           v-on="on"
+          color="rgb(223, 223, 223)"
         >
+        
           로그인
-        </v-btn>
+        </button>
       </template>
-      <v-card>
+      <v-card style="width:350px height:200px">
         <v-card-title>로그인</v-card-title>
-        <v-card-text><Login/></v-card-text>
+        <v-card-text style=" background-color:white padding:0 height:120px"><Login style="height:120px"/></v-card-text>
         
       </v-card>
     </v-dialog>
-  </v-row>
 </template>
 <script>
     import Login from '../page/user/Login'

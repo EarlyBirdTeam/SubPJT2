@@ -1,5 +1,5 @@
 <template >
-    <div class="" id="board" @click="test2">      
+    <div class="" id="board" @click="test2" style="margin-top:45px">      
 
         <!-- <Sidebar/>  -->
 

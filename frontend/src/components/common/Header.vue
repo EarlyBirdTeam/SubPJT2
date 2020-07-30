@@ -1,11 +1,33 @@
 <template>
     <div id="header" v-if="isHeader">
-        <h1>
-            <router-link class="white--text" v-bind:to="{name:constants.URL_TYPE.POST.MAIN}">
+            <div style="float:right width:300px; padding-bottom:0px">
+            <div style="margin-right:30px" v-if="this.$store.state.email == ''">
+                <LoginModal/>
+            </div>
+                        <div style="float:right" v-if="this.$store.state.email != ''">
+
+                    <CreateModal style="width:10px"/>
+                    <router-link v-bind:to="{name:constants.URL_TYPE.USER.MYPAGE}" class="btn--text white--text" style="textDecoration:none">
+                        {{userData}}
+                    </router-link> 
+
+                
+                    <button @click="logout" class="white--text">
+                        로그아웃
+                    </button>
+                
+            </div>
+            </div>
+        <h1 style="width:200px float:left ">
+            <router-link class="white--text" v-bind:to="{name:constants.URL_TYPE.POST.MAIN}" style="textDecoration:none">
                 이거모임?
             </router-link>
         </h1>
-        <div class="right">
+<!--         
+            <div v-if="this.$store.state.email == ''">
+                <LoginModal/>
+            </div> -->
+    
             <!-- <div class="search-input">
                 <i class="fas fa-search"></i>
                 <input v-model="keyword" type="text"/>
@@ -21,27 +43,10 @@
             </button> -->
             <!-- <p>{{this.$store.state.email}}</p> -->
             
-            <template v-if="this.$store.state.email == ''">
-                <div class="headBox">
-                    <LoginModal/>
-                </div>
-            </template>
 
-            <template v-if="this.$store.state.email != ''">
-                <div class="headBox">
-                    <CreateModal style="width:10px"/>
-                    <router-link v-bind:to="{name:constants.URL_TYPE.USER.MYPAGE}" class="btn--text">
-                        {{userData}}
-                    </router-link> 
 
-                
-                    <button @click="logout">
-                        로그아웃
-                    </button>
-                </div>
-            </template>
 
-        </div>  
+        
         
             
             <!-- <loginModal @close="closeModal" v-if="modal">
@@ -136,6 +141,7 @@
                 this.$store.dispatch(constants.METHODS.LOGOUT_USER);
                 try{
                    await this.$router.push('/');
+                   alert("정상적으로 로그아웃 되었습니다")
                 } catch(error) {
                     console.log("route same path!");
                 } 
@@ -189,12 +195,14 @@
 
 <style>
     #header{
-        border-bottom: 3px solid rgb(223, 223, 223);
-        background-color: #F57C00;
+        border-bottom: 3px solid rgb(255, 235, 221);
+
+        background-color: rgb(255,157,91);
     };
     #header header_name{
         color:rgb(223, 223, 223);
     }
+    
 </style>
 
 

@@ -1,17 +1,58 @@
 <template>
-    <div>
-        <!-- <h2>{{Moim.profile}}</h2>
-        <h2>{{Moim.name}}</h2> -->
-        <h3></h3>
-    </div>
+<div style="margin:2vw">
+
+    <div style="width:20%;">
+    <v-overflow-btn
+        style="margin:0 padding-top:0"
+        background-color="rgb(255,157,91)"          
+        :items="items"
+        label="보드를 선택해주세요"
+        >ㅎㅇ
+    </v-overflow-btn>
+</div>
+
+    <v-tabs
+      v-model="tab"
+      background-color="rgb(255,157,91)"
+      style="height:3px"
+      centered
+      dark
+      text
+    >
+   
+ <!-- <v-tabs-slider></v-tabs-slider> -->
+      <v-tab router-link to="test" >
+        <div class="d-flex">
+            <v-icon>mdi-ballot</v-icon>Board
+        </div>
+      </v-tab>
+
+      <v-tab router-link to="members" >
+          <div class="d-flex">
+        
+        <v-icon>mdi-account-box</v-icon>Members
+          </div>
+      </v-tab>
+
+      <v-tab router-link to="chat">
+        <div class="d-flex">
+        <v-icon>mdi-message-bulleted</v-icon>Chat
+        </div>
+      </v-tab>
+    </v-tabs>
+<!--  -->
+  </div>
 </template>
 
 <script>
 import Testboard from "./Test_Board"
 export default {
-    components:[ Testboard ],
+    components: {Testboard },
     data: () => ({
-        Moim:[]
+        
+          items: [
+          '보드1','보드2','보드3','보드4',
+        ],
     }),
     methods: {
         // getMoim() {
@@ -26,13 +67,15 @@ export default {
         //     })            
         // }
     },
-    created() {
-        this.getMoim()
-    }
+    // created() {
+    //     this.getMoim()
+    // }
 
 }
 </script>
 
-<style>
-
+<style scoped>
+    .v-text-field__details {
+        height: 0;
+        min-height: 0px;}
 </style>

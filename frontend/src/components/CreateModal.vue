@@ -1,17 +1,15 @@
 <template>
-  <v-row justify="center">
+
     <v-dialog v-model="dialog" scrollable max-width="300px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="white"
-          
+        <button
+          class="btn--text white--text"
           v-bind="attrs"
           v-on="on"
         style="width:0px padding:0"
         >
-        
-           <v-icon dark>mdi-plus</v-icon>
-        </v-btn>
+        모임생성하기
+        </button>
       </template>
       <v-card>
         <v-card-title>모임 생성</v-card-title>
@@ -22,7 +20,7 @@
 
       </v-card>
     </v-dialog>
-  </v-row>
+
 </template>
 
 <script>

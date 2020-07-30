@@ -60,6 +60,6 @@ io.on('connection', function(socket) {
     });
 });
 
-server.listen(3001, function() {
-    console.log('Socket IO server listening on port 3001');
+server.listen(3000, function() {
+    console.log('Socket IO server listening on port 3000');
 });
