@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotNull;
 
 @ApiModel(value = "Registration Request", description = "The registration request payload")
-public class RegistrationRequest {
+public class SignupRequest {
 
     @NullOrNotBlank(message = "Registration username can be null but not blank")
     @ApiModelProperty(value = "A valid username", allowableValues = "NonEmpty String")
@@ -39,15 +39,15 @@ public class RegistrationRequest {
             dataType = "boolean", allowableValues = "true, false")
     private Boolean registerAsAdmin;
 
-    public RegistrationRequest(String username, String email,
-                               String password, Boolean registerAsAdmin) {
+    public SignupRequest(String username, String email,
+                         String password, Boolean registerAsAdmin) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.registerAsAdmin = registerAsAdmin;
     }
 
-    public RegistrationRequest() {
+    public SignupRequest() {
     }
 
     public String getUsername() {
