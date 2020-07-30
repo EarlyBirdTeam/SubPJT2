@@ -14,6 +14,7 @@
 package com.accolite.pru.health.AuthApp.service;
 
 import com.accolite.pru.health.AuthApp.exception.TokenRefreshException;
+import com.accolite.pru.health.AuthApp.model.DeviceType;
 import com.accolite.pru.health.AuthApp.model.UserDevice;
 import com.accolite.pru.health.AuthApp.model.payload.DeviceInfo;
 import com.accolite.pru.health.AuthApp.model.token.RefreshToken;
@@ -55,6 +56,14 @@ public class UserDeviceService {
         userDevice.setDeviceId(deviceInfo.getDeviceId());
         userDevice.setDeviceType(deviceInfo.getDeviceType());
         userDevice.setNotificationToken(deviceInfo.getNotificationToken());
+        userDevice.setRefreshActive(true);
+        return userDevice;
+    }
+    public UserDevice createUserDevice() {
+        UserDevice userDevice = new UserDevice();
+        userDevice.setDeviceId("123");
+        userDevice.setDeviceType(DeviceType.DEVICE_TYPE_DESKTOP);
+        userDevice.setNotificationToken("123");
         userDevice.setRefreshActive(true);
         return userDevice;
     }

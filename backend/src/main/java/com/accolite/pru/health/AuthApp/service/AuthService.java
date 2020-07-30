@@ -200,7 +200,8 @@ public class AuthService {
                 .map(RefreshToken::getId)
                 .ifPresent(refreshTokenService::deleteById);
 
-        UserDevice userDevice = userDeviceService.createUserDevice(loginRequest.getDeviceInfo());
+//        UserDevice userDevice = userDeviceService.createUserDevice(loginRequest.getDeviceInfo());
+        UserDevice userDevice = userDeviceService.createUserDevice();
         RefreshToken refreshToken = refreshTokenService.createRefreshToken();
         userDevice.setUser(currentUser);
         userDevice.setRefreshToken(refreshToken);

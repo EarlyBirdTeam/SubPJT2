@@ -13,6 +13,7 @@
  */
 package com.accolite.pru.health.AuthApp.model.payload;
 
+import com.accolite.pru.health.AuthApp.model.DeviceType;
 import com.accolite.pru.health.AuthApp.validation.annotation.NullOrNotBlank;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -36,16 +37,27 @@ public class LoginRequest {
     private String password;
 
     @Valid
-    @NotNull(message = "Device info cannot be null")
+//    @NotNull(message = "Device info cannot be null")
     @ApiModelProperty(value = "Device info", required = true, dataType = "object", allowableValues = "A valid " +
             "deviceInfo object")
     private DeviceInfo deviceInfo;
 
-    public LoginRequest(String username, String email, String password, DeviceInfo deviceInfo) {
-        this.username = username;
+
+//    public LoginRequest(String username, String email, String password, DeviceInfo deviceInfo) {
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//        this.deviceInfo = deviceInfo;
+//    }
+
+    public LoginRequest(String email, String password) {
+        this.username = "username";
         this.email = email;
         this.password = password;
-        this.deviceInfo = deviceInfo;
+        this.deviceInfo = new DeviceInfo();
+        deviceInfo.setDeviceId("123");
+        deviceInfo.setDeviceType(DeviceType.DEVICE_TYPE_DESKTOP);
+        deviceInfo.setNotificationToken("123");
     }
 
     public LoginRequest() {
