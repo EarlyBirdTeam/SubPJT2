@@ -54,20 +54,6 @@
           v-on:setContent="changePIContent"/>
             
 
-
-          <textarea @dblclick="focusAction"
-          @click="changeTargetAction"
-          @click.right="deleteTargetAction(idx, $event)"
-          v-for="(postit, idx) in board.postits"
-          class="moveable"
-          :key="idx"
-          :id="idx"
-          v-model="postit.content"
-          ref="contentTextArea"
-          placeholder="It's Post it!"
-          cols="30" rows="3">
-          </textarea>
-
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
           @click.right="deleteTargetAction"
