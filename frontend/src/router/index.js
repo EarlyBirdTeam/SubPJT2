@@ -4,6 +4,9 @@ import Router from 'vue-router'
 import VueCookie from 'vue-cookie'
 
 import constants from '../lib/constants'
+// 서버
+import ChannelDetail from '../page/post/channelDetail.vue'
+import Server from '../page/post/server.vue'
 
 // 유저
 import Login from '../page/user/Login.vue'
@@ -18,7 +21,6 @@ import Board from '../page/post/Test_Board.vue'
 // test
 import Poll from '../components/common/Poll.vue'
 import Map from '../components/common/Map.vue'
-import Server from '../page/post/server.vue'
 
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -27,6 +29,18 @@ Vue.use(VueCookie)
 export default new Router({
   mode: 'history',
   routes: [   
+    // 서버 연결
+    { 
+      path: '/server',
+      name: 'server',
+      component: Server,
+    },
+    {
+      path: '/channel/:channelId',
+      name: 'channelDeatil',
+      component: ChannelDetail,
+      props: route => ({channelId: Number(route.params.ChannelId)})
+    },
     // 로그인/가입
     { 
       path: '/user/login',
@@ -58,11 +72,6 @@ export default new Router({
       path: '/board',
       name: constants.URL_TYPE.POST.TEST_BOARD,
       component: Board,
-    },
-    { 
-      path: '/server',
-      name: 'server',
-      component: Server,
     },
     { 
       path: '/error',
