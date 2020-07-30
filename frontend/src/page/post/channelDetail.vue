@@ -57,7 +57,6 @@ export default {
       channelName: '',
       sender: '',
       postit: {title: 'title!!!!', contents: ''},
-      // postitList: [],
       dummyTitle: '',
       dummyContents: '',
       postitList: [{
@@ -225,6 +224,6 @@ export default {
   margin: 0 auto;
   font-weight: 100;
   letter-spacing: 1px;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 </style>
