@@ -1,38 +1,45 @@
 <template>
 
-    <div id="paper" >
+    <div id="paper" class="MoveableBox">
 
 
         <textarea 
         name="" id="paperTitle"
+        class="notMoveBox"
         cols="30" rows="1"
-        >Title</textarea>
+        v-model="thisTitle"
+        @click.prevent.self
+        ></textarea>
 
         <textarea
         name="" id="paperContent"
+        class="notMoveBox"
+        v-model="thisContent"
         cols="30" rows="5"
-        >Content</textarea>
+        ></textarea>
     </div>
 </template>
 
 <script>
-import image from '../../assets/img/postIt.png'
 export default {
+    props:{
+        uid: Number,
+        title: String,
+        content: String,
+    },
+    watch:{
+        thisTitle: function(){
+            this.$emit('setTitle', this.thisTitle, this.uid);
+        },
+        thisContent: function(){
+            this.$emit('setContent', this.thisContent, this.uid);
+        }
+    },
     data() {
         return {
-            poll: {
-                question: "",
-                answers: [
-                    { answer: "" }
-                ],
-                multipleVotes: false
-            },
-            title:'',
-            content:'',
-
+            thisTitle:"Title",
+            thisContent:"Content",
         };
-    },
-    methods: {
     }
 }
 </script>
@@ -55,15 +62,16 @@ export default {
 #paperTitle{
   font-size: 30px;
   min-height: 50px;
-  /* height: 10%; */
+  width: 80%;
   height: auto;
   resize:none;
-  padding: 20px 20px 1px 20px;
+  margin: 20px 20px 1px 20px;
 }
 #paperContent{
-  height: 90%;
-  resize:none;
-  padding: 20px;
-  overflow: hidden;
+    height: 60%;
+    resize: none;
+    margin: 20px;
+    overflow: hidden;
+    width: 80%
 }
 </style>
