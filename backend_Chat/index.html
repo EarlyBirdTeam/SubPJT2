@@ -57,7 +57,7 @@
         socket.emit("login", {
             // name: "ungmo2",
             //name: makeRandomName(),
-            name: "Dongryul",
+            name: "Dongryul3",
             userid: "ungmo2@gmail.com"
         });
 
@@ -69,12 +69,20 @@
         });
 
         // 서버로부터의 메시지가 수신되면
+
         socket.on("s2c chat", function(data) {
             //$("#chatLogs").append("<div>" + data.msg + " : from <strong>" + data.from.name + "</strong></div>");
 
             $("#chatLogs").append("<div>" + data.from.name + " : " + data.msg + "</div>");
 
         });
+        socket.on("out", function(data) {
+            //$("#chatLogs").append("<div>" + data.msg + " : from <strong>" + data.from.name + "</strong></div>");
+
+            $("#chatLogs").append("<div>"+data.from.name+"님이 나가셨습니다.</div>");
+
+        });
+
 
         // Send 버튼이 클릭되면
         $("form").submit(function(e) {

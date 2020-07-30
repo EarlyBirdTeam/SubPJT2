@@ -8,6 +8,15 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
+// NameSpace 사용. 경로할당
+// Server-side
+var nsp = io.of('/space');
+nsp.on('connection', function(socket){
+    console.log('someone connected');
+});
+nsp.emit('hi', 'everyone!');
+
+
 // connection event handler
 // connection이 수립되면 event handler function의 인자로 socket인 들어온다
 io.on('connection', function(socket) {
@@ -55,10 +64,21 @@ io.on('connection', function(socket) {
         socket.disconnect();
     })
 
-    socket.on('disconnect', function() {
-        console.log('user disconnected: ' + socket.name);
+    socket.on('disconnect', function(data) {
+        console.log(socket.name + "님이 연결을 끓으셨습니다.");
+        var msg = {
+            from: {
+                name: socket.name,
+                userid: socket.userid
+            },
+            msg: data.msg
+        };
+
+        io.emit('out', msg);
     });
 });
+
+
 
 server.listen(3000, function() {
     console.log('Socket IO server listening on port 3000');
