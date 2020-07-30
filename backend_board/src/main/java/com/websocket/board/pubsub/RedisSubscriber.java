@@ -1,7 +1,7 @@
 package com.websocket.board.pubsub;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.websocket.board.model.Board;
+import com.websocket.board.model.SocketBoard;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -21,7 +21,7 @@ public class RedisSubscriber {
     public void sendMessage(String publishMessage) {
         try {
             // Board 객채로 맵핑
-            Board board = objectMapper.readValue(publishMessage, Board.class);
+            SocketBoard board = objectMapper.readValue(publishMessage, SocketBoard.class);
             // 채널을 구독한 클라이언트에게 메시지 발송
             messagingTemplate.convertAndSend("/sub/board/channel/" + board.getChannelId(), board);
             //log.debug(board.toString());

@@ -18,10 +18,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
     implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     //embedded-redis
     implementation 'it.ozimov:embedded-redis:0.7.2'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    //implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.13' // mysql 8버젼 임으로 8 설정
     implementation 'org.webjars.bower:bootstrap:4.3.1'
     implementation 'org.webjars.bower:vue:2.5.16'
     implementation 'org.webjars.bower:axios:0.17.1'

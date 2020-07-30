@@ -1,7 +1,6 @@
 package com.websocket.board.service;
 
-import com.websocket.board.model.Board;
-import com.websocket.board.model.Channel;
+import com.websocket.board.model.SocketBoard;
 import com.websocket.board.repo.ChannelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -30,7 +29,7 @@ public class BoardService {
     /**
      * 보드 상태 동기화
      */
-    public void syncBoardStatus(Board board) {
+    public void syncBoardStatus(SocketBoard board) {
         board.setUserCount(channelRepository.getUserCount(board.getChannelId()));
 //        if (ChatMessage.MessageType.ENTER.equals(chatMessage.getType())) {
 //            chatMessage.setMessage(chatMessage.getSender() + "님이 방에 입장했습니다.");
