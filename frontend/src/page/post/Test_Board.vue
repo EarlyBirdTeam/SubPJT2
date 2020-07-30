@@ -1,9 +1,11 @@
 <template >
-    <div class="" id="board" @click="test2">
-      <!-- <v-btn @click="connect">connect</v-btn> -->
+    <div class="" id="board" @click="test3">
 
 
-        <div class="bodyBox" ref="whiteBoard">
+
+        <div class="bodyBox " ref="whiteBoard" @dblclick="focusAction"
+          @click="changeTargetAction"
+          @mousedown="test3" @click.right="test4">
 
           <Moveable
           ref="moveable"
@@ -33,27 +35,24 @@
             <v-btn icon color="red" @click="createPoll">
               <v-icon>mdi-palette</v-icon>
             </v-btn>
+
+            <v-btn icon color="orange" @click="createMap">
+              <v-icon>mdi-map</v-icon>
+            </v-btn>
           </v-toolbar>
 
-          {{ this.board }}
 
-          <!-- <Postit @dblclick="focusAction"
-          @click="changeTargetAction"
+          <Postit 
           v-for="(a, idx) in counter.textC"
-          :key="idx"/> -->
-
-          <textarea @dblclick="focusAction"
-          @click="changeTargetAction"
-          @click.right="deleteTargetAction(idx, $event)"
-          v-for="(postit, idx) in board.postits"
-          class="moveable"
           :key="idx"
-          :id="idx"
-          v-model="postit.content"
-          ref="contentTextArea"
-          placeholder="It's Post it!"
-          cols="30" rows="3">
-          </textarea>
+          style="position: relative;
+                display: inline-block"
+          :uid="a"
+          :title="board.postits[a].title"
+          :content="board.postits[a].content"
+          v-on:setTitle="changePITitle"
+          v-on:setContent="changePIContent"/>
+            
 
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
@@ -71,11 +70,11 @@
             <Canvas />
           </div>
 
-          <Poll @mousedown.stop
-          @dblclick="changeTargetAction"
+          <Poll
           v-for="(a, idx) in counter.pollC"
           :key="idx"
-          
+          style="position: relative;
+                display: inline-block"
           />
 
           <Map 
@@ -130,6 +129,10 @@ export default {
     window.oncontextmenu = function() {
       return false;
     };
+    const BASE_URL = "http://localhost:8080"
+    // websocket & stomp initialize
+    var sock = new SockJS(BASE_URL + "/ws-stomp");
+    var ws = Stomp.over(sock);
   },
   data: () => ({
     moveable: {
@@ -154,8 +157,8 @@ export default {
       pollC: [],
     },
     board: {
-      idCounter: 2, 
-      postits: [ { "pId": 0, "title": "title", "content": "0" }, { "pId": 1, "title": "title", "content": "1" } ],
+      idCounter: 0, 
+      postits: [],
       polls: [],
     },
     channelId: '',
@@ -163,12 +166,42 @@ export default {
     sender: '',
     postit: '',
     postitList: [],
-    board:'',
-    boards: [],
     token: '',
-    userCount: 0
+    userCount: 0,
   }),
   methods: {
+    connect() {
+      // this.roomId = localStorage.getItem('wschat.roomId');
+      // this.roomName = localStorage.getItem('wschat.roomName');
+      this.channelId = "5a43b95b-5911-4fe3-b6ad-f0c53dca77c0"
+      this.channelName = "1234";
+      var _this = this;
+      const BASE_URL = "http://localhost:8080"
+      console.log("axios 이전")
+      axios.get("http://localhost:8080/board/channel").then(response => {
+        console.log("axios 요청 성공")
+          _this.token = response.data.token;
+          ws.connect({"token":_this.token}, function(frame) {
+              ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
+                  var recv = JSON.parse(message.body);
+                  _this.recvMessage(recv);
+              });
+          }, function(error) {
+              alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
+              location.href="/board/channel";
+          });
+      }).catch(err => {console.log(err)});
+      
+    },
+    sendMessage: function(type) {
+        ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, postitList:this.postitList}));
+        this.postit = '';
+    },
+    recvMessage: function(recv) {
+        this.userCount = recv.userCount;
+        this.postitList.unshift({"sender":recv.sender,"postitList":recv.postitList})
+    },
+
     handleDrag({ target, left, top }) {
       target.style.left = `${left}px`;
       target.style.top = `${top}px`;
@@ -196,9 +229,32 @@ export default {
     },
     changeTargetAction({target}){
       this.test();
-      event.stopPropagation();
-      target.blur();
-      this.$refs.moveable.moveable.target = target;
+
+      // if(target.getAttribute('class') != null){
+      //   var clas = target.getAttribute('class').split(' ');
+      
+      //   for(var cla in clas){
+      //     // console.log(clas[cla]);
+      //     if(clas[cla] == 'notMoveBox'){return;}
+      //   }
+      // }
+      if(target.getAttribute('class') != null){
+        var clas = target.getAttribute('class').split(' ');
+      
+        for(var cla in clas){
+          // console.log(clas[cla]);
+          if(clas[cla] == 'MoveableBox'){
+            event.stopPropagation();
+            target.blur();
+            this.$refs.moveable.moveable.target = target;
+          }
+        }
+      }
+
+
+      // event.stopPropagation();
+      // target.blur();
+      // this.$refs.moveable.moveable.target = target;
     },
     deleteTargetAction(idx ,{target}){
       console.log(idx);
@@ -218,23 +274,44 @@ export default {
       console.log("click body!");
       document.querySelector('.moveable-control-box').style.display = 'none';
     },
+    test3({target}){
+      console.log("click target!");
+      console.log(target.style.left);
+    },
+    test4({target}){
+      target.style.left = "100px";
+
+    },
+    changePITitle: function(value,index){
+      console.log("title is changed!",index ,value);
+      this.board.postits[index].title = value;
+    },
+    changePIContent: function(value,index){
+      console.log("content is changed!",index ,value);
+      this.board.postits[index].content = value;
+    },
 
     createText(event) {
       event.stopPropagation();
-      this.board.postits.push({pId: this.board.idCounter++, title: "title", content: "sample"});
-      this.counter.textC.push(0);
+      this.counter.textC.push(this.counter.textC.length);
+      // this.board.idCounter++;
+      this.board.postits.push({
+        "pid":this.board.idCounter++,
+        "title": "title",
+        "content": "content" ,
+      });
     },
     createScheduler() {
       event.stopPropagation();
-      this.counter.schedulerC.push(0);
+      this.counter.schedulerC.push(this.counter.schedulerC.length);
     },
     createCanvas() {
       event.stopPropagation();
-      this.counter.canvasC.push(0);
+      this.counter.canvasC.push(this.counter.canvasC.length);
     },
     createPoll() {
       event.stopPropagation();
-      this.counter.pollC.push(0);
+      this.counter.pollC.push(this.counter.pollC.length);
     },
     createMap() {
       event.stopPropagation();
@@ -269,7 +346,7 @@ export default {
   margin: 0 auto;
   font-weight: 100;
   letter-spacing: 1px;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .moveable2 {
@@ -305,7 +382,7 @@ export default {
 }
 
 .bodyBox {
-  position: relative;
+  /* position: relative; */
   height: 100%;
   width: 80vw;
   margin: 1% 3%;

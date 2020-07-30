@@ -1,8 +1,8 @@
 <template>
-  <div class="Poll">
+  <div class="Poll MoveableBox">
     <div class="poll-container" v-if="!isSetAll & !isEnd ">
       <div>
-        <div class="poll-title">
+        <div class="poll-title" >
           <strong>Q. </strong> <input v-model="poll.question" type="text" placeholder="Your Question..." />
           <hr />
         </div>
@@ -208,6 +208,8 @@ export default {
 
 .Poll{
   display: inline-block;
+  position: relative;
+  padding: 1%;
 }
 .poll-container {
   width: 500px;
@@ -229,9 +231,8 @@ export default {
   padding: 1%;
 }
 
-.poll-content{
-  /* text-align: center; */
-}
+/* .poll-content{
+} */
 
 .poll-footer {
   text-align: center;
