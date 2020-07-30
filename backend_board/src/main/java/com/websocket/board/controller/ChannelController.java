@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,15 +36,16 @@ public class ChannelController {
 
     @PostMapping("/channel")
     @ResponseBody
-    public Channel createChannel(@RequestParam String name) {
-        return channelRepository.createChannel(name);
+    public Channel createChannel(@RequestParam("channelName") String channelName) {
+        System.out.println(channelName);
+        return channelRepository.createChannel(channelName);
     }
 
-    @GetMapping("/channel/enter/{channelId}")
-    public String channelDetail(Model model, @PathVariable String channelId) {
-        model.addAttribute("channelId", channelId);
-        return "/board/channeldetail";
-    }
+//    @GetMapping("/channel/enter/{channelId}")
+//    public BoardResponse channelDetail(@PathVariable String channelId) {
+//        model.addAttribute("channelId", channelId);
+//        return "/board/channeldetail";
+//    }
 
     @GetMapping("/channel/{channelId}")
     @ResponseBody

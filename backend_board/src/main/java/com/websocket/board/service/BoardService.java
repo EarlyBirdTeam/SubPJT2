@@ -1,6 +1,7 @@
 package com.websocket.board.service;
 
 import com.websocket.board.model.Board;
+import com.websocket.board.model.Channel;
 import com.websocket.board.repo.ChannelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -39,6 +40,7 @@ public class BoardService {
 //            chatMessage.setSender("[알림]");
 //        }
         redisTemplate.convertAndSend(channelTopic.getTopic(), board);
+        //redisTemplate.convertAndSend();
     }
 
 }

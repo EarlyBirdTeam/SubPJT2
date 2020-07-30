@@ -65,11 +65,11 @@
                         return;
                     } else {
                         var params = new URLSearchParams();
-                        params.append("name",this.channel_name);
+                        params.append("channelName",this.channel_name);
                         axios.post('/board/channel', params)
                         .then(
                             response => {
-                                alert(response.data.channel_name+"채널 개설에 성공하였습니다.")
+                                alert(response.data.channelName+"채널 개설에 성공하였습니다.")
                                 this.channel_name = '';
                                 this.findAllChannel();
                             }
