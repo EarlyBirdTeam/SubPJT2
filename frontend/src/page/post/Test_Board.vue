@@ -1,11 +1,12 @@
 <template >
-    <div class="" id="board" @click="test3">
+    <div class="" id="board" @click="test2">
 
 
 
         <div class="bodyBox " ref="whiteBoard" @dblclick="focusAction"
           @click="changeTargetAction"
-          @mousedown="test3" @click.right="test4">
+          @click.right="test4"
+          @change="test3">
 
           <Moveable
           ref="moveable"
@@ -42,7 +43,7 @@
           </v-toolbar>
 
 
-          <Postit 
+          <!-- <Postit 
           v-for="(a, idx) in counter.textC"
           :key="idx"
           style="position: relative;
@@ -51,8 +52,19 @@
           :title="board.postits[a].title"
           :content="board.postits[a].content"
           v-on:setTitle="changePITitle"
-          v-on:setContent="changePIContent"/>
+          v-on:setContent="changePIContent"/> -->
             
+
+          <Postit 
+          v-for="(a, idx) in counter.textC"
+          :key="idx"
+          style="position: relative;
+                display: inline-block"
+          :uid="board.postits[a].boardId"
+          :title="board.postits[a].writer"
+          :content="board.postits[a].contents"
+          v-on:setTitle="changePITitle"
+          v-on:setContent="changePIContent"/> 
 
           <Scheduler @mousedown.stop
           @dblclick="changeTargetAction"
@@ -61,14 +73,12 @@
           :key="idx"
           class="moveable2" />
 
-          <div @dblclick="focusAction"
+            <Canvas @dblclick="focusAction"
           @click="changeTargetAction"
           @click.right="deleteTargetAction"
           v-for="(a, idx) in counter.canvasC"
           :key="idx"
-          class="moveable3">
-            <Canvas />
-          </div>
+          class="moveable3"  />
 
           <Poll
           v-for="(a, idx) in counter.pollC"
@@ -93,9 +103,9 @@
 
 
 <script>
-// import SockJs from 'sockjs';
-// import Stomp from 'webstomp-client';
-import axios from 'axios';
+import SockJS from 'sockjs-client';
+import Stomp from 'stomp-websocket';
+import http from '../../http-common.js';
 
 import Scheduler from "../../components/common/Scheduler";
 import Canvas from "../../components/common/Canvas";
@@ -133,6 +143,9 @@ export default {
     // websocket & stomp initialize
     var sock = new SockJS(BASE_URL + "/ws-stomp");
     var ws = Stomp.over(sock);
+
+    
+    this.init();
   },
   data: () => ({
     moveable: {
@@ -170,16 +183,39 @@ export default {
     userCount: 0,
   }),
   methods: {
-    connect() {
-      // this.roomId = localStorage.getItem('wschat.roomId');
-      // this.roomName = localStorage.getItem('wschat.roomName');
-      this.channelId = "5a43b95b-5911-4fe3-b6ad-f0c53dca77c0"
-      this.channelName = "1234";
+    // connect() {
+    //   // this.roomId = localStorage.getItem('wschat.roomId');
+    //   // this.roomName = localStorage.getItem('wschat.roomName');
+    //   this.channelId = "5a43b95b-5911-4fe3-b6ad-f0c53dca77c0"
+    //   this.channelName = "1234";
+    //   var _this = this;
+    //   const BASE_URL = "http://localhost:8080"
+    //   console.log("axios 이전")
+    //   axios.get("http://localhost:8080/board/channel").then(response => {
+    //     console.log("axios 요청 성공")
+    //       _this.token = response.data.token;
+    //       ws.connect({"token":_this.token}, function(frame) {
+    //           ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
+    //               var recv = JSON.parse(message.body);
+    //               _this.recvMessage(recv);
+    //           });
+    //       }, function(error) {
+    //           alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
+    //           location.href="/board/channel";
+    //       });
+    //   }).catch(err => {console.log(err)});
+      
+    // },
+    init() {
+      var BASE_URL =  "http://localhost:8080"
+      var sock = new SockJS(BASE_URL + "/ws-stomp");
+      var ws = Stomp.over(sock);
+      this.ws = ws;
+
+      this.channelId = localStorage.getItem('wsboard.channelId');
+      this.channelName = localStorage.getItem('wsboard.channelName');
       var _this = this;
-      const BASE_URL = "http://localhost:8080"
-      console.log("axios 이전")
-      axios.get("http://localhost:8080/board/channel").then(response => {
-        console.log("axios 요청 성공")
+      http.get('/board/user').then(response => {
           _this.token = response.data.token;
           ws.connect({"token":_this.token}, function(frame) {
               ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
@@ -190,8 +226,7 @@ export default {
               alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
               location.href="/board/channel";
           });
-      }).catch(err => {console.log(err)});
-      
+      });
     },
     sendMessage: function(type) {
         ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, postitList:this.postitList}));
@@ -274,21 +309,34 @@ export default {
       console.log("click body!");
       document.querySelector('.moveable-control-box').style.display = 'none';
     },
-    test3({target}){
-      console.log("click target!");
-      console.log(target.style.left);
+    test3(){
+      console.log("page is changed!");
+      // console.log(this.$store.state);
+      // console.log("Id : ", this.$store.state.channelData.channelId);
+      // console.log("Name : ", this.$store.state.channelData.channelName);
+      
+      console.log(localStorage.getItem('wsboard.channelId'));
+      console.log(localStorage.getItem('wsboard.channelName'));
+
+      this.sendMessage();
     },
     test4({target}){
       target.style.left = "100px";
-
+      console.log(this.$store.state)
     },
     changePITitle: function(value,index){
       console.log("title is changed!",index ,value);
-      this.board.postits[index].title = value;
+      // this.board.postits[index].title = value;
+      
+      // 데이터 테스트 용
+      this.board.postits[index].writer = value;
     },
     changePIContent: function(value,index){
       console.log("content is changed!",index ,value);
-      this.board.postits[index].content = value;
+      // this.board.postits[index].content = value;
+
+      // 데이터 테스트 용
+      this.board.postits[index].contents = value;
     },
 
     createText(event) {
@@ -296,10 +344,17 @@ export default {
       this.counter.textC.push(this.counter.textC.length);
       // this.board.idCounter++;
       this.board.postits.push({
-        "pid":this.board.idCounter++,
-        "title": "title",
-        "content": "content" ,
+        // "pid":this.board.idCounter++,
+        // "title": "title",
+        // "content": "content" ,
+        
+        // 데이터 테스트 용
+        "boardId":this.board.idCounter++,
+        "writer": "title",
+        "contents": "content" ,
+        "point":null,
       });
+      this.test3();
     },
     createScheduler() {
       event.stopPropagation();
@@ -329,6 +384,35 @@ export default {
         
       }
       
+    },
+    sendMessage: function(type) {
+        this.ws.send("/pub/board/message",
+         {"token":this.token},
+          JSON.stringify({
+            channelId:localStorage.getItem('wsboard.channelId'),
+            channelName:localStorage.getItem('wsboard.channelName'),
+            idCounter: this.board.idCounter, 
+            postits: this.board.postits,
+            polls: this.board.polls,
+            // board:{
+            //   idCounter: this.board.idCounter, 
+            //   postits: this.board.postits,
+            //   polls: this.board.polls,
+            // },
+            })
+          );
+        // this.postit = '';
+    },
+    recvMessage: function(recv) {
+      console.log("Response data is : ", recv);
+        this.userCount = recv.userCount;
+        // this.postits.unshift({
+        //   "sender":recv.sender,
+        //   "postitList":recv.postitList
+        //   })
+        this.board.postits = recv.postits;
+        this.counter.textC = recv.postits.length;
+        console.log("served postits is : ", this.board.postits);
     }
   },
   
@@ -365,12 +449,13 @@ export default {
   font-family: "Roboto", sans-serif;
   position: relative;
   width: 400px;
-  height: 200px;
+  height: 250px;
   text-align: center;
   font-size: 32px;
   margin: 0 auto;
   font-weight: 100;
   letter-spacing: 1px;
+  padding-bottom: 5%
 }
 
 .moveable span {

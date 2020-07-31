@@ -37,8 +37,11 @@ export default new Router({
     },
     {
       path: '/channel/:channelId',
-      name: 'channelDeatil',
-      component: ChannelDetail,
+      // name: 'channelDeatil',
+      // component: ChannelDetail,
+      
+      name: constants.URL_TYPE.POST.TEST_BOARD,
+      component: Board,
       props: route => ({channelId: Number(route.params.ChannelId)})
     },
     // 로그인/가입

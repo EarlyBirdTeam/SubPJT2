@@ -28,10 +28,14 @@ export const store = new Vuex.Store({
         nickname:'',
         errorcode:'',
         modal:false,
-        board:{
-            idCounter: 0, 
-            postits: [],
-            polls: [],
+        channelData:{
+            board:{
+                idCounter: 0, 
+                postits: [],
+                polls: [],
+            },
+            channelId: '',
+            channelName: '',
         }
     },
     actions:{
