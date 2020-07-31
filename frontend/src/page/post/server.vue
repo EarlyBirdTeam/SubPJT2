@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     findAllChannel: function() {
-      http.get('http://localhost:8080/board/channels').then(response => {
+      http.get('/board/channels').then(response => {
         // prevent html, allow json array
         if(Object.prototype.toString.call(response.data) === "[object Array]")
             this.channels = response.data;

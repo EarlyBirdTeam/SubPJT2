@@ -91,7 +91,7 @@ export default {
   },
    methods: {
     init() {
-      var BASE_URL =  "http://localhost:8080"
+      var BASE_URL =  "http://i3a510.p.ssafy.io/api"
       var sock = new SockJS(BASE_URL + "/ws-stomp");
       var ws = Stomp.over(sock);
       this.ws = ws;
