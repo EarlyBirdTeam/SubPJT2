@@ -19,18 +19,26 @@ export default {
         //     this.textarea += data.message + "\n"
         //     })
 
+        var cnt = 1;
+
         this.$socket.emit("login", {
             name: "Dongryul",
             userid: "ungmo2@gmail.com"
         });
 
         this.$socket.on("login", (data)=> {
+
             $("#chatLogs").append("<div><strong>" + data + "</strong>님이 입장하셨습니다</div>");
         });
 
         this.$socket.on("s2c chat", (data)=> {
             $("#chatLogs").append("<div>" + data.from.name + " : " + data.msg + "</div>");
         });
+
+        this.$socket.on("out", (data)=> {
+                    $("#chatLogs").append("<div>"+data.from.name+"님이 나가셨습니다.</div>");
+
+                });
         },
     data() {
         return {

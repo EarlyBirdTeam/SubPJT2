@@ -94,8 +94,7 @@ socket.on('message', function(message) {
 ////////////////////////////////////////////////////
 
 var localVideo = document.querySelector('#localVideo');
-var remoteVideo = document.querySelector('#remoteVideo');
-
+// var remoteVideo = document.querySelector('#remoteVideo');
 var remoteVideo2 = document.querySelector('#remoteVideo2');
 
 navigator.mediaDevices.getUserMedia({
