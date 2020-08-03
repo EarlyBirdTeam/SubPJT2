@@ -23,22 +23,24 @@
 
           <!-- 도구상자 -->
           <v-toolbar class=" toolBox" @dblclick="changeTargetAction" >
-            <v-btn icon color="orange" @click="createText">
-              <v-icon>mdi-message</v-icon>
-            </v-btn>
-            <v-btn icon color="orange" @click="createScheduler">
-              <v-icon>mdi-book</v-icon>
-            </v-btn>
+            <!-- <v-btn icon color="orange" @click="createText">
+              <v-icon>mdi-sticker</v-icon>
+            </v-btn> -->
+
             <v-btn icon color="orange" @click="createCanvas">
               <v-icon>mdi-palette</v-icon>
             </v-btn>
 
-            <v-btn icon color="red" @click="createPoll">
-              <v-icon>mdi-palette</v-icon>
+            <v-btn icon color="orange" @click="createPoll">
+              <v-icon>mdi-vote</v-icon>
             </v-btn>
 
             <v-btn icon color="orange" @click="createMap">
               <v-icon>mdi-map</v-icon>
+            </v-btn>
+            
+            <v-btn icon color="orange" @click="createScheduler">
+              <v-icon>mdi-calendar</v-icon>
             </v-btn>
           </v-toolbar>
 
@@ -134,7 +136,7 @@ export default {
     Map,
   },
   created() { 
-    console.log(document.querySelector('.moveable-control-box'));
+    // console.log(document.querySelector('.moveable-control-box'));
     // 우클릭 기본이벤트 차단
     window.oncontextmenu = function() {
       return false;
@@ -206,28 +208,28 @@ export default {
     //   }).catch(err => {console.log(err)});
       
     // },
-    init() {
-      var BASE_URL =  "http://localhost:8080"
-      var sock = new SockJS(BASE_URL + "/ws-stomp");
-      var ws = Stomp.over(sock);
-      this.ws = ws;
+    // init() {
+    //   var BASE_URL =  "http://localhost:8080"
+    //   var sock = new SockJS(BASE_URL + "/ws-stomp");
+    //   var ws = Stomp.over(sock);
+    //   this.ws = ws;
 
-      this.channelId = localStorage.getItem('wsboard.channelId');
-      this.channelName = localStorage.getItem('wsboard.channelName');
-      var _this = this;
-      http.get('/board/user').then(response => {
-          _this.token = response.data.token;
-          ws.connect({"token":_this.token}, function(frame) {
-              ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
-                  var recv = JSON.parse(message.body);
-                  _this.recvMessage(recv);
-              });
-          }, function(error) {
-              alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
-              location.href="/board/channel";
-          });
-      });
-    },
+    //   this.channelId = localStorage.getItem('wsboard.channelId');
+    //   this.channelName = localStorage.getItem('wsboard.channelName');
+    //   var _this = this;
+    //   http.get('/board/user').then(response => {
+    //       _this.token = response.data.token;
+    //       ws.connect({"token":_this.token}, function(frame) {
+    //           ws.subscribe("/sub/board/channel/"+_this.channelId, function(message) {
+    //               var recv = JSON.parse(message.body);
+    //               _this.recvMessage(recv);
+    //           });
+    //       }, function(error) {
+    //           alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
+    //           location.href="/board/channel";
+    //       });
+    //   });
+    // },
     sendMessage: function(type) {
         ws.send("/pub/board/message", {"token":this.token}, JSON.stringify({channelId:this.channelId, postitList:this.postitList}));
         this.postit = '';
@@ -243,7 +245,7 @@ export default {
       // console.log(target);
     },
     handleResize({ target, width, height, delta }) {
-      console.log("onResize", width, height, delta);
+      // console.log("onResize", width, height, delta);
       delta[0] && (target.style.width = `${width}px`);
       delta[1] && (target.style.height = `${height}px`);
     },
@@ -292,8 +294,6 @@ export default {
       // this.$refs.moveable.moveable.target = target;
     },
     deleteTargetAction(idx ,{target}){
-      console.log(idx);
-      console.log(target);
       if(confirm("요소를 삭제하시겠습니까?") === true) {
         if(target.getAttribute("class") === "moveable") {
           this.board.postits.splice(idx, 1);
@@ -306,7 +306,7 @@ export default {
       document.querySelector('.moveable-control-box').style.display = 'block';
     },
     test2(){
-      console.log("click body!");
+      // console.log("click body!");
       document.querySelector('.moveable-control-box').style.display = 'none';
     },
     test3(){
@@ -326,17 +326,11 @@ export default {
     },
     changePITitle: function(value,index){
       console.log("title is changed!",index ,value);
-      // this.board.postits[index].title = value;
-      
-      // 데이터 테스트 용
-      this.board.postits[index].writer = value;
+      this.board.postits[index].title = value;
     },
     changePIContent: function(value,index){
       console.log("content is changed!",index ,value);
-      // this.board.postits[index].content = value;
-
-      // 데이터 테스트 용
-      this.board.postits[index].contents = value;
+      this.board.postits[index].content = value;
     },
 
     createText(event) {

@@ -1,51 +1,46 @@
 <template>
-
-    <div id="paper" class="MoveableBox">
-
-
+    <div class="MoveableBox paper">
         <textarea 
         name="" id="paperTitle"
         class="notMoveBox"
         cols="30" rows="1"
-        v-model="thisTitle"
+        v-model="postit.title"
         @click.prevent.self
+        placeholder="title here"
         ></textarea>
 
         <textarea
         name="" id="paperContent"
         class="notMoveBox"
-        v-model="thisContent"
         cols="30" rows="5"
+        v-model="postit.contents"
+        placeholder="content here.."
         ></textarea>
     </div>
 </template>
 
 <script>
+import image from '../../assets/img/postIt.png'
 export default {
-    props:{
-        uid: Number,
-        title: String,
-        content: String,
-    },
-    watch:{
-        thisTitle: function(){
-            this.$emit('setTitle', this.thisTitle, this.uid);
-        },
-        thisContent: function(){
-            this.$emit('setContent', this.thisContent, this.uid);
-        }
-    },
     data() {
-        return {
-            thisTitle:"Title",
-            thisContent:"Content",
-        };
-    }
+      return {}
+    },
+    props: {
+      postit: Object,
+    },
+    // mounted() {
+    //   this.title = 'title!!'
+    //   this.content = postit.contents 
+    //   // console.log(postit)
+    // },
+    methods: {
+    },
+
 }
 </script>
 
 <style>
-#paper{  
+.paper{  
   /* background-color: yellow; */
   background-image: url('../../assets/img/postIt.png');
   background-size: 100% 100%;
@@ -62,16 +57,20 @@ export default {
 #paperTitle{
   font-size: 30px;
   min-height: 50px;
-  width: 80%;
+  /* height: 10%; */
   height: auto;
   resize:none;
-  margin: 20px 20px 1px 20px;
+  /* padding: 20px 20px 1px 20px; */
+  padding: 10px 10px 1px 10px;
 }
 #paperContent{
-    height: 60%;
-    resize: none;
-    margin: 20px;
-    overflow: hidden;
-    width: 80%
+  height: 90%;
+  resize: none;
+  /* padding: 20px; */
+  padding: 10px;
+  overflow: hidden;
+}
+.MoveableBox {
+  padding: 30px;
 }
 </style>

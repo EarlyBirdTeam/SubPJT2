@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://i3a510.p.ssafy.io/api",
   // headers: {
   //   "Content-type": "application/json",
   // }
