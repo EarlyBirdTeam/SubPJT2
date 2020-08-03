@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="app" v-cloak>
+  <div class="container" id="app" v-cloak @change="sendMessage()" @click="test2">
     <!-- {{ postitList }}   {{ idCount}} -->
         <div class="row">
             <div class="col-md-6">
@@ -31,7 +31,7 @@
           >
           </Moveable> 
 
-          <div v-for="(pi, idx) in this.postitList" :key="idx">
+          <div v-for="(pi, idx) in this.postitList" :key="idx" class="pIBox">
             <!-- <Postit :id="pi.id" :postit="pi" style="position: relative; display: inline-block"/> -->
             <Postit :id="pi.id" :postit="pi" 
             :style="{left: pi.left, top: pi.top}"/>
@@ -226,4 +226,8 @@ export default {
   letter-spacing: 1px;
   /* background-color: yellow; */
 }
+.pIBox{
+  display: inline-block;
+}
+
 </style>
