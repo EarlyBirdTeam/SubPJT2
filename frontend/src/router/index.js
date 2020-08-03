@@ -18,15 +18,15 @@ import Base from '../page/post/BaseBoard.vue'
 import Chat from '../page/post/Chat.vue'
 import Members from '../page/post/BoardMember.vue'
 
-Vue.use(Router) 
+Vue.use(Router)
 Vue.use(Vuex)
 Vue.use(VueCookie)
- 
+
 export default new Router({
   mode: 'history',
-  routes: [   
+  routes: [
     // 로그인/가입
-    { 
+    {
       path: '/user/login',
       name: constants.URL_TYPE.USER.LOGIN,
       component: Login
@@ -47,12 +47,12 @@ export default new Router({
       component: MyPage
     },
     // 포스트
-    { 
+    {
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
       component: List,
     },
-    { 
+    {
       path: '/board',
       name: constants.URL_TYPE.POST.BASE,
       component: Base,
@@ -61,29 +61,35 @@ export default new Router({
       //   next('/');
       // }
     },
-    { 
+    {
       path: '/board/test',
       name: constants.URL_TYPE.POST.TEST_BOARD,
       component: Test,
-   
+
     },
-    { 
+    {
       path: '/board/create',
       name: constants.URL_TYPE.POST.CREATE,
       component: Create,
     },
-    { 
+    {
       path: '/board/members',
       name: constants.URL_TYPE.POST.MEMBERS,
       component: Members,
     },
-    { 
+    {
       path: '/board/chat',
       name: constants.URL_TYPE.POST.CHAT,
       component: Chat,
     },
+    // // 테스트
+    // {
+    //   path: '/board/test02',
+    //   name: constants.URL_TYPE.POST.TEST,
+    //   component: testPage,
+    // },
 
-    { 
+    {
       path: '/error',
       name: constants.ERROR.FRONT_ERROR,
       component: () => import('../page/etc/error.vue'),
@@ -97,6 +103,6 @@ export default new Router({
       component: () => import('../page/etc/e404.vue')
     }
 
-    
+
   ]
 })

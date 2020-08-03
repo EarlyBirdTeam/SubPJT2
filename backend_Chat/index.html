@@ -51,6 +51,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     $(function(){
+        
         // socket.io 서버에 접속한다
         var socket = io();
         var cnt = 0;
@@ -81,8 +82,10 @@
             console.log("myName : "+Myname);
             console.log("yourname : "+data.yourname);
 
-            if(data.msg.id == '' ) $("#chatLogs").append("<div>" + data.from.name + " : " + data.msg + "</div>");
-            else if(Myname == data.from.name) $("#chatLogs").append("<div style='color:blue'>(" + Myname + "님에게) " + data.msg + "</div>");
+            if(data.id == '') {
+                $("#chatLogs").append("<div>" + data.from.name + " : " + data.msg + "</div>");
+            }
+            else if(Myname == data.from.name) $("#chatLogs").append("<div style='color:#0000ff'>(" + Myname + "님에게) " + data.msg + "</div>");
             else  $("#chatLogs").append("<div style='color:blue'>(" + data.from.name + "님으로부터) " + data.msg + "</div>");
 
         });
@@ -126,6 +129,10 @@
             // return name + Math.random()*10;
         }
     });
+    
+    
 </script>
+
+
 </body>
 </html>

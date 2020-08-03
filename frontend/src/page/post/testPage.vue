@@ -53,14 +53,11 @@ export default {
             // 서버로 메시지를 전송한다.
             this.$socket.emit("chat", { msg: $msgForm.val() });
             $msgForm.val("");
-            },
-
-
-
+            }
         }
     }
 
 </script>
-s
+
 <style>
 </style>

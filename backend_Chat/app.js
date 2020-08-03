@@ -47,7 +47,7 @@ io.on('connection', function(socket) {
                 userid: socket.userid
             },
             msg: data.msg,
-            id: ''
+            id: '',
         };
 
         // 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송한다
@@ -71,7 +71,7 @@ io.on('connection', function(socket) {
         console.log("socketid : "+socket.id);
         console.log("dataid : "+data.id);
 
-        socket.join(data.id);
+        // socket.join(data.id);  // 상대 socket.id에 내 id를 조인시킴으로써 같은 room 입장. 이 경우 조인 경우가 꼬일 수 있음.
 
         var msg = {
             from: {
@@ -88,7 +88,7 @@ io.on('connection', function(socket) {
         // socket.broadcast.emit('chat', msg);
 
         // 메시지를 전송한 클라이언트에게만 메시지를 전송한다
-        // socket.emit('s2c chat', msg);
+        socket.emit('s2c chat', msg);
 
         // 접속된 모든 클라이언트에게 메시지를 전송한다
         // io.emit('s2c chat', msg);
