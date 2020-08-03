@@ -63,7 +63,7 @@ export default {
       },
       checkBoard(url) {
         let array = [
-          "members","test_vue","base","chat"
+          "members","test_vue","base","chat",'schedule'
         ];
         console.log(url)
         let isBoard = false;

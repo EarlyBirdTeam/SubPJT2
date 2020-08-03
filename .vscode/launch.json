@@ -9,6 +9,15 @@
             "mainClass": "com.web.blog.WebBlogApplication",
             "projectName": "webBlog",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-WebsocketBoardApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.websocket.WebsocketBoardApplication",
+            "args": ""
         }
     ]
 }

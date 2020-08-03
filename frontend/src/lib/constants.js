@@ -21,6 +21,7 @@ export default {
             CREATE: "create",
             MEMBERS: "members",
             CHAT: "chat",
+            SCHEDULE: "schedule"
         },
     },
     METHODS:{

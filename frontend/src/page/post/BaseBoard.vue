@@ -26,7 +26,11 @@
             <v-icon>mdi-ballot</v-icon>Board
         </div>
       </v-tab>
-
+      <v-tab router-link to="schedule">
+        <div class="d-flex">
+        <v-icon>mdi-calendar-today</v-icon>Schedule
+        </div>
+      </v-tab>  
       <v-tab router-link to="members" >
           <div class="d-flex">
         
@@ -39,6 +43,7 @@
         <v-icon>mdi-message-bulleted</v-icon>Chat
         </div>
       </v-tab>
+          
     </v-tabs>
 <!--  -->
   </div>

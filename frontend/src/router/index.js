@@ -17,6 +17,7 @@ import Create from '../page/post/Create_Community.vue'
 import Base from '../page/post/BaseBoard.vue'
 import Chat from '../page/post/Chat.vue'
 import Members from '../page/post/BoardMember.vue'
+import Schedule from '../page/post/Schedule.vue'
 
 Vue.use(Router) 
 Vue.use(Vuex)
@@ -81,6 +82,11 @@ export default new Router({
       path: '/board/chat',
       name: constants.URL_TYPE.POST.CHAT,
       component: Chat,
+    },
+    { 
+      path: '/board/schedule',
+      name: constants.URL_TYPE.POST.SCHEDULE,
+      component: Schedule,
     },
 
     { 
